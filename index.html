@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Dog Grooming - Nega i šišanje pasa by Verica</title>
+<meta name="description" content="Profesionalno šišanje, kupanje i nega pasa. Zakaži termin za svog psa u Lucky Dog Grooming salonu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent: #2b5672;
+    --accent-dark: #1c3c52;
+    --accent-darker: #142a3a;
+    --accent-soft: #e7eef2;
+    --accent-soft-2: #d4e1e9;
+    --accent-glow: rgba(43, 86, 114, 0.14);
+    --text: rgba(20, 24, 27, 0.92);
+    --text-muted: rgba(20, 24, 27, 0.66);
+    --text-faint: rgba(20, 24, 27, 0.46);
+    --bg: #fdfdfc;
+    --bg-off: #f6f4f1;
+    --radius-btn: 8px;
+    --radius-card: 22px;
+    --radius-card-sm: 14px;
+    --maxw: 1280px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Open Sans', sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  h1,h2,h3,h4{
+    font-family:'Poppins', sans-serif;
+    color:var(--accent-darker);
+    margin:0 0 16px 0;
+    font-weight:700;
+    line-height:1.2;
+  }
+  p{margin:0 0 16px 0;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+
+  .wrap{
+    width:100%;
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding-left:24px;
+    padding-right:24px;
+  }
+
+  .eyebrow{
+    display:inline-block;
+    font-family:'Poppins', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
+  }
+
+  /* Buttons */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    padding:15px 30px;
+    border-radius:var(--radius-btn);
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#fff;
+    box-shadow:0 10px 24px -8px rgba(43,86,114,0.5);
+  }
+  .btn-primary:hover{
+    background:var(--accent-dark);
+    transform:translateY(-2px);
+    box-shadow:0 14px 28px -8px rgba(43,86,114,0.55);
+  }
+  .btn-outline{
+    background:transparent;
+    color:var(--accent-dark);
+    border-color:var(--accent-soft-2);
+  }
+  .btn-outline:hover{
+    border-color:var(--accent);
+    background:var(--accent-soft);
+  }
+  .btn-light{
+    background:#fff;
+    color:var(--accent-dark);
+  }
+  .btn-light:hover{
+    background:var(--accent-soft);
+    transform:translateY(-2px);
+  }
+
+  /* Header */
+  .site-header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(253,253,252,0.96);
+    border-bottom:1px solid transparent;
+    transition:background 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease;
+  }
+  .site-header.scrolled{
+    background:rgba(253,253,252,0.85);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom-color:rgba(43,86,114,0.12);
+    box-shadow:0 8px 24px -16px rgba(20,42,58,0.3);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:14px;
+    padding-bottom:14px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .logo img{
+    height:52px;
+    width:auto;
+  }
+  .nav-desktop{
+    display:flex;
+    align-items:center;
+    gap:36px;
+  }
+  .nav-links{
+    display:flex;
+    gap:30px;
+  }
+  .nav-links a{
+    font-family:'Poppins', sans-serif;
+    font-size:15px;
+    font-weight:500;
+    color:var(--text);
+    transition:color 0.15s ease;
+  }
+  .nav-links a:hover{color:var(--accent);}
+
+  .hamburger{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    width:40px;
+    height:40px;
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    padding:0;
+  }
+  .hamburger span{
+    display:block;
+    width:24px;
+    height:2px;
+    background:var(--accent-darker);
+    margin:0 auto;
+    transition:transform 0.25s ease, opacity 0.25s ease;
+  }
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .mobile-menu{
+    display:none;
+    position:fixed;
+    inset:0;
+    top:81px;
+    background:#fff;
+    z-index:99;
+    padding:32px 24px;
+    flex-direction:column;
+    gap:0;
+    overflow-y:auto;
+    transform:translateY(-12px);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.22s ease, transform 0.22s ease;
+  }
+  .mobile-menu.open{
+    display:flex;
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .mobile-menu a{
+    font-family:'Poppins', sans-serif;
+    font-size:20px;
+    font-weight:600;
+    color:var(--accent-darker);
+    padding:16px 0;
+    border-bottom:1px solid var(--accent-soft);
+  }
+  .mobile-menu .btn{
+    margin-top:24px;
+    width:100%;
+  }
+
+  /* Hero */
+  .hero{
+    position:relative;
+    color:#fff;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    z-index:0;
+  }
+  .hero-bg img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .hero-bg::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(115deg, rgba(20,42,58,0.92) 10%, rgba(28,60,82,0.82) 45%, rgba(43,86,114,0.55) 100%);
+  }
+  .hero-content{
+    position:relative;
+    z-index:1;
+    padding-top:120px;
+    padding-bottom:140px;
+    max-width:720px;
+  }
+  .hero h1{
+    color:#fff;
+    font-size:clamp(36px, 5.6vw, 60px);
+    font-weight:700;
+    margin-bottom:22px;
+  }
+  .hero p{
+    font-size:19px;
+    color:rgba(255,255,255,0.88);
+    max-width:520px;
+    margin-bottom:34px;
+  }
+
+  /* Bol intro */
+  .pain{
+    padding-top:72px;
+    padding-bottom:72px;
+    background:var(--bg-off);
+    text-align:center;
+  }
+  .pain .wrap{max-width:760px;}
+  .pain p{
+    font-size:19px;
+    color:var(--text-muted);
+    margin-bottom:0;
+  }
+  .pain p + p{margin-top:14px;}
+
+  /* Section generic */
+  section{
+    padding-top:96px;
+    padding-bottom:96px;
+  }
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head.center{
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+  }
+  .section-head h2{
+    font-size:clamp(28px, 3.4vw, 40px);
+  }
+  .section-head p{
+    color:var(--text-muted);
+    font-size:17px;
+    max-width:60ch;
+  }
+  .section-head.center p{margin-left:auto;margin-right:auto;}
+
+  /* Services */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .service-card{
+    background:#fff;
+    border:1px solid var(--accent-soft);
+    border-radius:var(--radius-card);
+    overflow:hidden;
+    transition:transform 0.22s ease, box-shadow 0.22s ease;
+  }
+  .service-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 24px 40px -20px rgba(20,42,58,0.25);
+  }
+  .service-img{
+    height:200px;
+    overflow:hidden;
+  }
+  .service-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .service-body{
+    padding:28px 26px 30px;
+  }
+  .service-icon{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:16px;
+  }
+  .service-icon svg{width:22px;height:22px;stroke:var(--accent);}
+  .service-body h3{
+    font-size:20px;
+    margin-bottom:10px;
+  }
+  .service-body p{
+    color:var(--text-muted);
+    font-size:15.5px;
+    margin-bottom:0;
+  }
+
+  /* Pricing */
+  .pricing-wrap{
+    background:var(--bg-off);
+  }
+  .pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .price-card{
+    background:#fff;
+    border-radius:var(--radius-card);
+    padding:36px 30px;
+    border:1px solid var(--accent-soft);
+    display:flex;
+    flex-direction:column;
+  }
+  .price-card h3{
+    font-size:19px;
+    margin-bottom:4px;
+  }
+  .price-card .price-sub{
+    color:var(--text-faint);
+    font-size:14px;
+    margin-bottom:24px;
+  }
+  .price-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:13px 0;
+    border-bottom:1px dashed var(--accent-soft-2);
+    gap:12px;
+  }
+  .price-row:last-of-type{border-bottom:none;}
+  .price-row span:first-child{
+    color:var(--text);
+    font-size:15px;
+  }
+  .price-row span:last-child{
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    color:var(--accent-dark);
+    white-space:nowrap;
+  }
+  .price-card.featured{
+    border-color:var(--accent);
+    box-shadow:0 20px 40px -24px rgba(43,86,114,0.4);
+  }
+  .price-note{
+    margin-top:40px;
+    text-align:center;
+    color:var(--text-faint);
+    font-size:14.5px;
+  }
+
+  /* About */
+  .about{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .about-img{
+    position:relative;
+  }
+  .about-img .photo-frame{
+    border-radius:var(--radius-card);
+    overflow:hidden;
+    box-shadow:0 30px 50px -28px rgba(20,42,58,0.35);
+  }
+  .about-img img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+  }
+  .about-text h2{font-size:clamp(26px, 3.2vw, 36px);}
+  .about-text p{
+    color:var(--text-muted);
+    font-size:17px;
+    max-width:56ch;
+  }
+  .about-badges{
+    display:flex;
+    gap:28px;
+    margin-top:28px;
+    flex-wrap:wrap;
+  }
+  .about-badge{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .about-badge svg{width:22px;height:22px;stroke:var(--accent);flex-shrink:0;}
+  .about-badge span{
+    font-family:'Poppins', sans-serif;
+    font-weight:500;
+    font-size:14.5px;
+    color:var(--text);
+  }
+
+  /* Contact */
+  .contact-wrap{
+    background:var(--bg-off);
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  .contact-info-card{
+    background:#fff;
+    border-radius:var(--radius-card);
+    border:1px solid var(--accent-soft);
+    padding:40px;
+  }
+  .contact-item{
+    display:flex;
+    gap:16px;
+    margin-bottom:26px;
+  }
+  .contact-item:last-child{margin-bottom:0;}
+  .contact-item .icon{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .contact-item .icon svg{width:19px;height:19px;stroke:var(--accent);}
+  .contact-item h4{
+    font-size:15.5px;
+    margin-bottom:4px;
+    color:var(--accent-darker);
+  }
+  .contact-item p{
+    color:var(--text-muted);
+    font-size:15px;
+    margin-bottom:0;
+  }
+  .map-placeholder{
+    margin-top:30px;
+    height:180px;
+    border-radius:var(--radius-card-sm);
+    background:var(--accent-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--accent-dark);
+    font-family:'Poppins', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-align:center;
+    padding:20px;
+  }
+
+  .booking-form{
+    background:#fff;
+    border-radius:var(--radius-card);
+    border:1px solid var(--accent-soft);
+    padding:40px;
+  }
+  .booking-form h3{font-size:21px;}
+  .booking-form .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:16px;
+  }
+  .booking-form input,
+  .booking-form select,
+  .booking-form textarea{
+    width:100%;
+    font-family:'Open Sans', sans-serif;
+    font-size:15px;
+    padding:13px 15px;
+    border:1px solid var(--accent-soft-2);
+    border-radius:var(--radius-btn);
+    background:var(--bg-off);
+    color:var(--text);
+    margin-bottom:16px;
+  }
+  .booking-form textarea{
+    resize:vertical;
+    min-height:100px;
+  }
+  .booking-form input:focus,
+  .booking-form select:focus,
+  .booking-form textarea:focus{
+    outline:none;
+    border-color:var(--accent);
+    background:#fff;
+  }
+  .booking-form .btn{width:100%;}
+
+  /* CTA closing */
+  .cta-final{
+    background:linear-gradient(135deg, var(--accent-darker), var(--accent-dark) 55%, var(--accent));
+    color:#fff;
+    text-align:center;
+  }
+  .cta-final h2{color:#fff;font-size:clamp(28px, 3.6vw, 42px);}
+  .cta-final p{
+    color:rgba(255,255,255,0.82);
+    max-width:56ch;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:17px;
+  }
+  .cta-final .btn-row{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-top:30px;
+  }
+
+  /* Footer */
+  footer{
+    background:var(--accent-darker);
+    color:rgba(255,255,255,0.7);
+    padding-top:56px;
+    padding-bottom:30px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:32px;
+    padding-bottom:36px;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+    margin-bottom:24px;
+  }
+  .footer-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .footer-logo img{height:46px;width:auto;}
+  .footer-logo span{
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    color:#fff;
+    font-size:16px;
+  }
+  .footer-links{
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+  }
+  .footer-links a{
+    font-size:14.5px;
+    color:rgba(255,255,255,0.75);
+  }
+  .footer-links a:hover{color:#fff;}
+  .footer-bottom{
+    font-size:13.5px;
+    color:rgba(255,255,255,0.5);
+    text-align:center;
+  }
+
+  /* Reveal animation */
+  .reveal{
+    opacity:1;
+    transform:translateY(0);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.pre{
+    opacity:0.001;
+    transform:translateY(14px);
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width:991px){
+    .nav-desktop{display:none;}
+    .hamburger{display:flex;}
+    .services-grid{grid-template-columns:repeat(2, 1fr);}
+    .pricing-grid{grid-template-columns:1fr;}
+    .about{grid-template-columns:1fr;gap:36px;}
+    .about-img img{height:340px;}
+    .contact-grid{grid-template-columns:1fr;}
+  }
+
+  @media (max-width:768px){
+    .wrap{padding-left:20px;padding-right:20px;}
+    section{padding-top:64px;padding-bottom:64px;}
+    .pain{padding-top:48px;padding-bottom:48px;}
+    .hero-content{padding-top:80px;padding-bottom:90px;}
+    .services-grid{grid-template-columns:1fr;}
+    .booking-form .form-row{grid-template-columns:1fr;}
+    .about-badges{gap:18px;}
+    .footer-top{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a href="#home" class="logo">
+      <img src="assets/logo.png" alt="Lucky Dog Grooming by Verica logo">
+    </a>
+    <nav class="nav-desktop">
+      <ul class="nav-links">
+        <li><a href="#usluge">Usluge</a></li>
+        <li><a href="#cenovnik">Cenovnik</a></li>
+        <li><a href="#o-nama">O nama</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <a href="#kontakt" class="btn btn-primary">Zakaži termin</a>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Otvori meni" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#usluge">Usluge</a>
+    <a href="#cenovnik">Cenovnik</a>
+    <a href="#o-nama">O nama</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#kontakt" class="btn btn-primary">Zakaži termin</a>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img src="assets/11062b_8f12d5ea0e4e466ab5cb873eb62817fa~mv2_d_5410_2976_s_4_2.jpg" alt="Nasapunjan pas tokom kupanja u salonu">
+  </div>
+  <div class="wrap">
+    <div class="hero-content">
+      <span class="eyebrow" style="color:#cfe0ea;">Lucky Dog Grooming by Verica</span>
+      <h1>Nega za tvog psa, bez stresa i bez haosa kod kuće</h1>
+      <p>Šišanje, kupanje i kompletna nega na jednom mestu. Dovedeš psa, mi se pobrinemo za ostalo, ti dobiješ mirisnog i negovanog ljubimca.</p>
+      <a href="#kontakt" class="btn btn-primary">Zakaži termin za svog psa</a>
+    </div>
+  </div>
+</section>
+
+<section class="pain">
+  <div class="wrap">
+    <p>Znaš taj osećaj kad dlaka počne da se čvoruga, a nokti su predugi za normalnu šetnju. Kupanje kod kuće znači mokro kupatilo, nervoznog psa i šampon koji mu možda i ne odgovara.</p>
+    <p>Nemaš uvek vremena, alat ni iskustvo da to uradiš kako treba, i to je sasvim u redu.</p>
+  </div>
+</section>
+
+<section id="usluge">
+  <div class="wrap">
+    <div class="section-head reveal pre">
+      <span class="eyebrow">Usluge</span>
+      <h2>Šta radimo za tvog psa</h2>
+      <p>Od kratkog letnjeg šišanja do kompletne nege dlake, noktiju i ušiju. Pristup prilagođavamo rasi i temperamentu psa.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal pre">
+        <div class="service-img">
+          <img src="assets/4951af_b895238ee17b4acfb91137a42d0df001~mv2_d_4464_2976_s_4_2.jpg" alt="Šišanje pomeranca makazama u salonu">
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>
+          </div>
+          <h3>Šišanje prilagođeno rasi</h3>
+          <p>Sečemo dlaku po meri rase i tvojih želja, od kratkog letnjeg reza do oblika koji prati standard rase.</p>
+        </div>
+      </div>
+      <div class="service-card reveal pre">
+        <div class="service-img">
+          <img src="assets/4951af_6c28e284d3b04d239656044a8d5a66d1~mv2.png" alt="Kupanje šnaucera šamponom u salonu">
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2 3 5 6 5 10a5 5 0 0 1-10 0c0-4 3-7 5-10z"></path></svg>
+          </div>
+          <h3>Kupanje i sušenje</h3>
+          <p>Perem šamponom za osetljivu kožu, posle feniramo i raščešljavamo dlaku do kraja, bez čvorova.</p>
+        </div>
+      </div>
+      <div class="service-card reveal pre">
+        <div class="service-img">
+          <img src="assets/4951af_a5d088f931a64fcb8401f6125ce61050~mv2_d_2000_1258_s_2.png" alt="Sečenje noktiju buldogu u salonu">
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          </div>
+          <h3>Sečenje noktiju i čišćenje ušiju</h3>
+          <p>Skraćujem nokte bez štipanja i čistim uši redovno, da sprečim neprijatne iritacije.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cenovnik" class="pricing-wrap">
+  <div class="wrap">
+    <div class="section-head center reveal pre">
+      <span class="eyebrow">Cenovnik</span>
+      <h2>Okvirne cene po veličini psa</h2>
+      <p>Finalna cena zavisi od stanja dlake, dužine šišanja i temperamenta psa. Tačan iznos dobijaš na pregledu pre termina.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal pre">
+        <h3>Mali psi</h3>
+        <div class="price-sub">do 10 kg, npr. jorkšir, čivava, pomeranac</div>
+        <div class="price-row"><span>Kupanje i sušenje</span><span>od 1.500 din</span></div>
+        <div class="price-row"><span>Šišanje</span><span>od 2.000 din</span></div>
+        <div class="price-row"><span>Kompletna nega</span><span>od 2.800 din</span></div>
+      </div>
+      <div class="price-card featured reveal pre">
+        <h3>Srednji psi</h3>
+        <div class="price-sub">10 - 25 kg, npr. kokeр, bigl, šnaucer</div>
+        <div class="price-row"><span>Kupanje i sušenje</span><span>od 2.000 din</span></div>
+        <div class="price-row"><span>Šišanje</span><span>od 2.800 din</span></div>
+        <div class="price-row"><span>Kompletna nega</span><span>od 3.800 din</span></div>
+      </div>
+      <div class="price-card reveal pre">
+        <h3>Veliki psi</h3>
+        <div class="price-sub">preko 25 kg, npr. labrador, zlatni retriver</div>
+        <div class="price-row"><span>Kupanje i sušenje</span><span>od 2.500 din</span></div>
+        <div class="price-row"><span>Šišanje</span><span>od 3.500 din</span></div>
+        <div class="price-row"><span>Kompletna nega</span><span>od 4.800 din</span></div>
+      </div>
+    </div>
+    <p class="price-note">Kompletna nega uključuje kupanje, šišanje, sečenje noktiju i čišćenje ušiju.</p>
+  </div>
+</section>
+
+<section id="o-nama">
+  <div class="wrap">
+    <div class="about">
+      <div class="about-img reveal pre">
+        <div class="photo-frame">
+          <img src="assets/Verica_Petrovic.webp" alt="Verica Petrović, vlasnica salona, sa svojim psom">
+        </div>
+      </div>
+      <div class="about-text reveal pre">
+        <span class="eyebrow">O nama</span>
+        <h2>Upoznaj Vericu</h2>
+        <p>Verica se bavi grooming-om godinama i navikla je na pse svih temperamenta, od onih mirnih do onih koji prvi put sede na stolu za šišanje.</p>
+        <p>Svakom psu pristupa polako, bez žurbe i bez grube sile. Cilj je jednostavan: da tvoj pas izađe negovan i da se sledeći put raduje dolasku u salon.</p>
+        <div class="about-badges">
+          <div class="about-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-0.5z"></path></svg>
+            <span>Godine iskustva u grooming-u</span>
+          </div>
+          <div class="about-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21l7.78-7.55 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <span>Strpljiv pristup svakom psu</span>
+          </div>
+          <div class="about-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            <span>Pažljiva nega, bez žurbe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="contact-wrap">
+  <div class="wrap">
+    <div class="section-head reveal pre">
+      <span class="eyebrow">Kontakt i lokacija</span>
+      <h2>Gde nas nalaziš</h2>
+      <p>Pozovi, pošalji poruku ili popuni formu, javljamo se da dogovorimo termin koji ti odgovara.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info-card reveal pre">
+        <div class="contact-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <div>
+            <h4>Telefon</h4>
+            <p>+381 60 123 4567</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"></path><path d="M22 6l-10 7L2 6"></path></svg>
+          </div>
+          <div>
+            <h4>Email</h4>
+            <p>zakazivanje@luckydog-grooming.rs</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <div>
+            <h4>Adresa</h4>
+            <p>Bulevar Oslobođenja 45, Beograd</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div>
+            <h4>Radno vreme</h4>
+            <p>Ponedeljak - subota, 09:00 - 19:00</p>
+          </div>
+        </div>
+        <div class="map-placeholder" aria-hidden="true">MAPA LOKACIJE SALONA</div>
+      </div>
+      <form class="booking-form reveal pre" action="#" method="post">
+        <h3>Zakaži termin</h3>
+        <p style="color:var(--text-muted);font-size:15px;margin-bottom:22px;">Ostavi podatke i javljamo se u toku dana da potvrdimo termin.</p>
+        <div class="form-row">
+          <input type="text" name="ime" placeholder="Ime i prezime" required>
+          <input type="tel" name="telefon" placeholder="Broj telefona" required>
+        </div>
+        <div class="form-row">
+          <input type="text" name="rasa" placeholder="Rasa psa">
+          <select name="velicina">
+            <option value="">Veličina psa</option>
+            <option value="mali">Mali pas</option>
+            <option value="srednji">Srednji pas</option>
+            <option value="veliki">Veliki pas</option>
+          </select>
+        </div>
+        <textarea name="poruka" placeholder="Koju uslugu ti treba i kada ti odgovara termin"></textarea>
+        <button type="submit" class="btn btn-primary">Pošalji zahtev za termin</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="reveal pre">Zakaži termin danas</h2>
+    <p class="reveal pre">Javi nam veličinu psa i uslugu koja ti treba, mi nađemo termin koji ti odgovara.</p>
+    <div class="btn-row reveal pre">
+      <a href="#kontakt" class="btn btn-light">Zakaži termin za svog psa</a>
+      <a href="tel:+381601234567" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4);color:#fff;">Pozovi salon</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="Lucky Dog Grooming by Verica logo">
+        <span>Lucky Dog Grooming</span>
+      </div>
+      <div class="footer-links">
+        <a href="#usluge">Usluge</a>
+        <a href="#cenovnik">Cenovnik</a>
+        <a href="#o-nama">O nama</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2026 Lucky Dog Grooming by Verica. Sva prava zadržana.</p>
+  </div>
+</footer>
+
+<script>
+  // Sticky header blur on scroll
+  var header = document.getElementById('siteHeader');
+  function onScroll(){
+    if(window.scrollY > 10){
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+
+  // Hamburger menu
+  var hamburgerBtn = document.getElementById('hamburgerBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  hamburgerBtn.addEventListener('click', function(){
+    var isOpen = mobileMenu.classList.toggle('open');
+    hamburgerBtn.classList.toggle('open', isOpen);
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('.mobile-menu a').forEach(function(link){
+    link.addEventListener('click', function(){
+      mobileMenu.classList.remove('open');
+      hamburgerBtn.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', false);
+    });
+  });
+
+  // Scroll reveal
+  if('IntersectionObserver' in window){
+    var revealEls = document.querySelectorAll('.reveal');
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el){ observer.observe(el); });
+  }
+</script>
+
+</body>
+</html>
