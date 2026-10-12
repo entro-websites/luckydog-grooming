@@ -3,967 +3,1076 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lucky Dog Grooming - Nega i šišanje pasa by Verica</title>
-<meta name="description" content="Profesionalno šišanje, kupanje i nega pasa. Zakaži termin za svog psa u Lucky Dog Grooming salonu.">
+<title>Lucky Dog Grooming Svilajnac - šišanje, kupanje i nega pasa</title>
+<meta name="description" content="Salon za negu pasa u Svilajncu, Svetog Save 46. Kompletna usluga, kupanje i sušenje, sečenje noktiju. Pozovi 062 160 26 36.">
+<link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,100;1,9..144,300..700,100&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --accent: #2b5672;
-    --accent-dark: #1c3c52;
-    --accent-darker: #142a3a;
-    --accent-soft: #e7eef2;
-    --accent-soft-2: #d4e1e9;
-    --accent-glow: rgba(43, 86, 114, 0.14);
-    --text: rgba(20, 24, 27, 0.92);
-    --text-muted: rgba(20, 24, 27, 0.66);
-    --text-faint: rgba(20, 24, 27, 0.46);
-    --bg: #fdfdfc;
-    --bg-off: #f6f4f1;
-    --radius-btn: 8px;
-    --radius-card: 22px;
-    --radius-card-sm: 14px;
-    --maxw: 1280px;
+    --cream:#fbf6ef;
+    --cream-2:#f3e8d9;
+    --cream-3:#eadbc6;
+    --caramel:#c29a6e;
+    --caramel-d:#8f6538;
+    --espresso:#3a2214;
+    --ink:#24160d;
+    --text:rgba(36,22,13,.9);
+    --muted:rgba(36,22,13,.66);
+    --line:rgba(58,34,20,.14);
+    --foam:#e4eef2;
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Poppins', system-ui, sans-serif;
+    --maxw:1280px;
+    --sec:128px;
+    --ease:cubic-bezier(.22,1,.36,1);
   }
-
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    font-family:'Open Sans', sans-serif;
-    color:var(--text);
-    background:var(--bg);
-    font-weight:400;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
+  body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   img{max-width:100%;display:block;}
-  h1,h2,h3,h4{
-    font-family:'Poppins', sans-serif;
-    color:var(--accent-darker);
-    margin:0 0 16px 0;
-    font-weight:700;
-    line-height:1.2;
-  }
-  p{margin:0 0 16px 0;}
   a{color:inherit;text-decoration:none;}
-  ul{margin:0;padding:0;list-style:none;}
+  ul,ol{margin:0;padding:0;list-style:none;}
+  p{margin:0 0 16px;}
+  h1,h2,h3{font-family:var(--serif);font-variation-settings:"SOFT" 100;font-weight:400;color:var(--ink);line-height:1.08;margin:0 0 20px;letter-spacing:-.01em;text-wrap:balance;}
+  h2{font-size:clamp(32px, 4.2vw, 56px);}
+  h3{font-size:24px;line-height:1.2;}
+  em{font-style:italic;color:var(--caramel-d);}
+  .s{display:block;text-wrap:balance;}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .sec{padding:var(--sec) 0;}
+  .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--caramel-d);margin-bottom:20px;}
+  .eyebrow::before{content:"";width:28px;height:1px;background:currentColor;}
+  .lead{font-size:20px;line-height:1.6;color:var(--muted);}
+  .head{max-width:720px;margin-bottom:64px;}
+  .head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .head.center .eyebrow::after{content:"";width:28px;height:1px;background:currentColor;}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
 
-  .wrap{
-    width:100%;
-    max-width:var(--maxw);
-    margin:0 auto;
-    padding-left:24px;
-    padding-right:24px;
-  }
+  /* Dugmad: primary / secondary / tertiary, .has-arrow je modifikator */
+  .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;font-family:var(--sans);font-size:16px;font-weight:500;line-height:1;padding:20px 28px;border-radius:999px;border:1px solid transparent;cursor:pointer;white-space:nowrap;overflow:hidden;isolation:isolate;transition:color .4s var(--ease), border-color .4s var(--ease), transform .4s var(--ease);}
+  .btn::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;transform:translateY(101%);transition:transform .5s var(--ease);}
+  .btn:hover::before,.btn:focus-visible::before{transform:none;}
+  .btn-primary{background:var(--espresso);color:var(--cream);}
+  .btn-primary::before{background:var(--caramel);}
+  .btn-primary:hover{color:var(--ink);}
+  .btn-secondary{background:transparent;color:var(--espresso);border-color:rgba(58,34,20,.32);}
+  .btn-secondary::before{background:var(--espresso);}
+  .btn-secondary:hover{color:var(--cream);border-color:var(--espresso);}
+  .on-dark .btn-primary{background:var(--caramel);color:var(--ink);}
+  .on-dark .btn-primary::before{background:var(--cream);}
+  .on-dark .btn-secondary{color:var(--cream);border-color:rgba(251,246,239,.36);}
+  .on-dark .btn-secondary::before{background:var(--cream);}
+  .on-dark .btn-secondary:hover{color:var(--ink);}
+  .btn .arr{display:inline-grid;place-items:center;width:28px;height:28px;margin:-8px -16px -8px 0;border-radius:50%;background:rgba(251,246,239,.16);transition:transform .4s var(--ease);}
+  .btn-secondary .arr{background:rgba(58,34,20,.08);}
+  .btn:hover .arr{transform:translateX(4px) rotate(-45deg);}
+  .btn .arr svg{width:12px;height:12px;}
+  .link{display:inline-flex;align-items:center;gap:8px;font-weight:500;color:var(--espresso);background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;padding-bottom:4px;transition:background-size .5s var(--ease);}
+  .link:hover{background-size:100% 1px;}
 
-  .eyebrow{
-    display:inline-block;
-    font-family:'Poppins', sans-serif;
-    font-size:13px;
-    font-weight:600;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--accent);
-    margin-bottom:14px;
-  }
-
-  /* Buttons */
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    font-family:'Poppins', sans-serif;
-    font-weight:600;
-    font-size:16px;
-    padding:15px 30px;
-    border-radius:var(--radius-btn);
-    border:2px solid transparent;
-    cursor:pointer;
-    transition:transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
-    white-space:nowrap;
-  }
-  .btn-primary{
-    background:var(--accent);
-    color:#fff;
-    box-shadow:0 10px 24px -8px rgba(43,86,114,0.5);
-  }
-  .btn-primary:hover{
-    background:var(--accent-dark);
-    transform:translateY(-2px);
-    box-shadow:0 14px 28px -8px rgba(43,86,114,0.55);
-  }
-  .btn-outline{
-    background:transparent;
-    color:var(--accent-dark);
-    border-color:var(--accent-soft-2);
-  }
-  .btn-outline:hover{
-    border-color:var(--accent);
-    background:var(--accent-soft);
-  }
-  .btn-light{
-    background:#fff;
-    color:var(--accent-dark);
-  }
-  .btn-light:hover{
-    background:var(--accent-soft);
-    transform:translateY(-2px);
-  }
+  /* Gornja traka */
+  .topbar{background:var(--ink);color:rgba(251,246,239,.76);font-size:12px;letter-spacing:.02em;}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;padding-top:12px;padding-bottom:12px;}
+  .topbar ul{display:flex;gap:28px;}
+  .topbar li{display:flex;align-items:center;gap:8px;}
+  .topbar svg{width:12px;height:12px;stroke:var(--caramel);}
+  .topbar a:hover{color:var(--cream);}
 
   /* Header */
-  .site-header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:rgba(253,253,252,0.96);
-    border-bottom:1px solid transparent;
-    transition:background 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease;
-  }
-  .site-header.scrolled{
-    background:rgba(253,253,252,0.85);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    border-bottom-color:rgba(43,86,114,0.12);
-    box-shadow:0 8px 24px -16px rgba(20,42,58,0.3);
-  }
-  .header-inner{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding-top:14px;
-    padding-bottom:14px;
-  }
-  .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .logo img{
-    height:52px;
-    width:auto;
-  }
-  .nav-desktop{
-    display:flex;
-    align-items:center;
-    gap:36px;
-  }
-  .nav-links{
-    display:flex;
-    gap:30px;
-  }
-  .nav-links a{
-    font-family:'Poppins', sans-serif;
-    font-size:15px;
-    font-weight:500;
-    color:var(--text);
-    transition:color 0.15s ease;
-  }
-  .nav-links a:hover{color:var(--accent);}
-
-  .hamburger{
-    display:none;
-    flex-direction:column;
-    justify-content:center;
-    gap:5px;
-    width:40px;
-    height:40px;
-    border:none;
-    background:transparent;
-    cursor:pointer;
-    padding:0;
-  }
-  .hamburger span{
-    display:block;
-    width:24px;
-    height:2px;
-    background:var(--accent-darker);
-    margin:0 auto;
-    transition:transform 0.25s ease, opacity 0.25s ease;
-  }
-  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-  .hamburger.open span:nth-child(2){opacity:0;}
-  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
-  .mobile-menu{
-    display:none;
-    position:fixed;
-    inset:0;
-    top:81px;
-    background:#fff;
-    z-index:99;
-    padding:32px 24px;
-    flex-direction:column;
-    gap:0;
-    overflow-y:auto;
-    transform:translateY(-12px);
-    opacity:0;
-    pointer-events:none;
-    transition:opacity 0.22s ease, transform 0.22s ease;
-  }
-  .mobile-menu.open{
-    display:flex;
-    opacity:1;
-    transform:translateY(0);
-    pointer-events:auto;
-  }
-  .mobile-menu a{
-    font-family:'Poppins', sans-serif;
-    font-size:20px;
-    font-weight:600;
-    color:var(--accent-darker);
-    padding:16px 0;
-    border-bottom:1px solid var(--accent-soft);
-  }
-  .mobile-menu .btn{
-    margin-top:24px;
-    width:100%;
-  }
+  .hdr{position:sticky;top:0;z-index:50;background:rgba(251,246,239,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s, box-shadow .3s;}
+  .hdr.scrolled{border-bottom-color:var(--line);box-shadow:0 12px 32px -24px rgba(36,22,13,.4);}
+  .hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:12px;padding-bottom:12px;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{width:56px;height:56px;transition:transform .8s var(--ease);}
+  .brand:hover img{transform:rotate(-20deg);}
+  .brand b{font-family:var(--serif);font-variation-settings:"SOFT" 100;font-weight:500;font-size:20px;color:var(--ink);line-height:1;}
+  .brand small{display:block;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
+  .nav{display:flex;align-items:center;gap:40px;}
+  .nav ul{display:flex;gap:32px;}
+  .nav ul a{position:relative;font-size:16px;font-weight:500;color:var(--text);}
+  .nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--caramel-d);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease);}
+  .nav ul a:hover::after{transform:scaleX(1);transform-origin:left;}
+  .nav .btn{padding:16px 24px;}
+  .burger{display:none;width:48px;height:48px;border:0;background:transparent;cursor:pointer;padding:0;position:relative;}
+  .burger span{position:absolute;left:12px;right:12px;height:2px;background:var(--ink);transition:transform .3s var(--ease), opacity .3s;}
+  .burger span:nth-child(1){top:16px;} .burger span:nth-child(2){top:24px;} .burger span:nth-child(3){top:32px;}
+  .burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+  .mnav{display:none;}
 
   /* Hero */
-  .hero{
-    position:relative;
-    color:#fff;
-    overflow:hidden;
-  }
-  .hero-bg{
-    position:absolute;
-    inset:0;
-    z-index:0;
-  }
-  .hero-bg img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-  }
-  .hero-bg::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(115deg, rgba(20,42,58,0.92) 10%, rgba(28,60,82,0.82) 45%, rgba(43,86,114,0.55) 100%);
-  }
-  .hero-content{
-    position:relative;
-    z-index:1;
-    padding-top:120px;
-    padding-bottom:140px;
-    max-width:720px;
-  }
-  .hero h1{
-    color:#fff;
-    font-size:clamp(36px, 5.6vw, 60px);
-    font-weight:700;
-    margin-bottom:22px;
-  }
-  .hero p{
-    font-size:19px;
-    color:rgba(255,255,255,0.88);
-    max-width:520px;
-    margin-bottom:34px;
-  }
+  .hero{position:relative;padding:64px 0 128px;overflow:hidden;}
+  .hero::before{content:"";position:absolute;width:720px;height:720px;right:-160px;top:-200px;border-radius:50%;background:radial-gradient(circle, rgba(194,154,110,.24), transparent 64%);pointer-events:none;}
+  .hero .wrap{display:grid;grid-template-columns:1.08fr .92fr;gap:64px;align-items:center;}
+  .hero-copy{container-type:inline-size;position:relative;z-index:2;}
+  .hero h1{font-size:clamp(40px, 7vw, 96px);font-size:clamp(40px, 15cqi, 96px);line-height:1.02;margin-bottom:28px;}
+  .hero h1 .ln{display:block;white-space:nowrap;padding-bottom:.08em;clip-path:inset(0 -1em -.2em 0);}
+  .hero h1 .ln>span{display:inline-block;animation:lineUp 1.1s var(--ease) both;}
+  .hero h1 .ln:nth-child(2)>span{animation-delay:.12s;}
+  @keyframes lineUp{from{transform:translateY(110%);}to{transform:none;}}
+  .hero .lead{max-width:600px;margin-bottom:40px;animation:fadeUp 1s var(--ease) .35s both;}
+  .hero .eyebrow{animation:fadeUp 1s var(--ease) both;}
+  .cta-row{display:flex;flex-wrap:wrap;gap:16px;animation:fadeUp 1s var(--ease) .5s both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .ticks{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line);font-size:16px;font-weight:500;color:var(--espresso);animation:fadeUp 1s var(--ease) .65s both;}
+  .ticks li{display:flex;align-items:center;gap:8px;}
+  .ticks svg{width:20px;height:20px;flex:none;}
 
-  /* Bol intro */
-  .pain{
-    padding-top:72px;
-    padding-bottom:72px;
-    background:var(--bg-off);
-    text-align:center;
-  }
-  .pain .wrap{max-width:760px;}
-  .pain p{
-    font-size:19px;
-    color:var(--text-muted);
-    margin-bottom:0;
-  }
-  .pain p + p{margin-top:14px;}
+  .hero-art{position:relative;width:100%;max-width:520px;justify-self:end;aspect-ratio:4/5;}
+  .arch{position:absolute;inset:0;border-radius:50% 50% 6% 6% / 40% 40% 4.8% 4.8%;overflow:hidden;background:var(--cream-3);box-shadow:0 48px 80px -40px rgba(36,22,13,.45);}
+  .arch img{width:100%;height:100%;object-fit:cover;object-position:82% 40%;animation:settle 2.4s var(--ease) 3s both;}
+  @keyframes settle{from{transform:scale(1.12);}to{transform:scale(1);}}
+  .arch::after{content:"";position:absolute;top:-10%;bottom:-10%;left:0;width:40%;background:linear-gradient(100deg, transparent, rgba(255,250,240,.38) 50%, transparent);transform:translateX(-160%) skewX(-12deg);animation:sheen 10s ease-in-out 4.6s infinite;pointer-events:none;}
+  @keyframes sheen{0%{transform:translateX(-160%) skewX(-12deg);}14%,100%{transform:translateX(320%) skewX(-12deg);}}
 
-  /* Section generic */
-  section{
-    padding-top:96px;
-    padding-bottom:96px;
-  }
-  .section-head{
-    max-width:640px;
-    margin-bottom:56px;
-  }
-  .section-head.center{
-    margin-left:auto;
-    margin-right:auto;
-    text-align:center;
-  }
-  .section-head h2{
-    font-size:clamp(28px, 3.4vw, 40px);
-  }
-  .section-head p{
-    color:var(--text-muted);
-    font-size:17px;
-    max-width:60ch;
-  }
-  .section-head.center p{margin-left:auto;margin-right:auto;}
+  .cut{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:3;pointer-events:none;animation:gone 0s linear 4.2s forwards;}
+  @keyframes gone{to{visibility:hidden;}}
+  .paper{transform-box:fill-box;transform-origin:50% 100%;animation:paperDrop 1.1s cubic-bezier(.55,0,.8,.2) 3.1s forwards;}
+  @keyframes paperDrop{0%{transform:none;opacity:1;}18%{transform:translateY(-1.5%) rotate(-1.5deg);opacity:1;}100%{transform:translateY(64%) rotate(9deg);opacity:0;}}
+  .sc-out{animation:scOut .5s ease 3s forwards;}
+  @keyframes scOut{to{opacity:0;}}
+  .cut .b1{animation:snipA .26s ease-in-out infinite alternate;}
+  .cut .b2{animation:snipB .26s ease-in-out infinite alternate;}
+  @keyframes snipA{from{transform:rotate(-18deg);}to{transform:rotate(-1deg);}}
+  @keyframes snipB{from{transform:rotate(18deg);}to{transform:rotate(1deg);}}
 
-  /* Services */
-  .services-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:28px;
-  }
-  .service-card{
-    background:#fff;
-    border:1px solid var(--accent-soft);
-    border-radius:var(--radius-card);
-    overflow:hidden;
-    transition:transform 0.22s ease, box-shadow 0.22s ease;
-  }
-  .service-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 24px 40px -20px rgba(20,42,58,0.25);
-  }
-  .service-img{
-    height:200px;
-    overflow:hidden;
-  }
-  .service-img img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-  }
-  .service-body{
-    padding:28px 26px 30px;
-  }
-  .service-icon{
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    background:var(--accent-soft);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-bottom:16px;
-  }
-  .service-icon svg{width:22px;height:22px;stroke:var(--accent);}
-  .service-body h3{
-    font-size:20px;
-    margin-bottom:10px;
-  }
-  .service-body p{
-    color:var(--text-muted);
-    font-size:15.5px;
-    margin-bottom:0;
-  }
+  .bubbles{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden;border-radius:50% 50% 6% 6% / 40% 40% 4.8% 4.8%;}
+  .bubbles i{position:absolute;bottom:-40px;left:var(--x);width:var(--s);height:var(--s);border-radius:50%;opacity:0;
+    background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.95) 0 9%, rgba(255,255,255,.12) 26%, rgba(228,238,242,.10) 62%, rgba(255,255,255,.55) 100%);
+    box-shadow:inset -2px -4px 8px rgba(130,180,210,.35), inset 2px 2px 4px rgba(255,220,240,.35);border:1px solid rgba(255,255,255,.6);
+    animation:rise var(--t) ease-in var(--d) infinite;}
+  @keyframes rise{0%{opacity:0;transform:translate(0,0) scale(.5);}12%{opacity:.95;}50%{transform:translate(var(--dx),-280px) scale(1);}88%{opacity:.85;}100%{opacity:0;transform:translate(0,-560px) scale(1.08);}}
 
-  /* Pricing */
-  .pricing-wrap{
-    background:var(--bg-off);
-  }
-  .pricing-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:24px;
-  }
-  .price-card{
-    background:#fff;
-    border-radius:var(--radius-card);
-    padding:36px 30px;
-    border:1px solid var(--accent-soft);
-    display:flex;
-    flex-direction:column;
-  }
-  .price-card h3{
-    font-size:19px;
-    margin-bottom:4px;
-  }
-  .price-card .price-sub{
-    color:var(--text-faint);
-    font-size:14px;
-    margin-bottom:24px;
-  }
-  .price-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    padding:13px 0;
-    border-bottom:1px dashed var(--accent-soft-2);
-    gap:12px;
-  }
-  .price-row:last-of-type{border-bottom:none;}
-  .price-row span:first-child{
-    color:var(--text);
-    font-size:15px;
-  }
-  .price-row span:last-child{
-    font-family:'Poppins', sans-serif;
-    font-weight:600;
-    color:var(--accent-dark);
-    white-space:nowrap;
-  }
-  .price-card.featured{
-    border-color:var(--accent);
-    box-shadow:0 20px 40px -24px rgba(43,86,114,0.4);
-  }
-  .price-note{
-    margin-top:40px;
-    text-align:center;
-    color:var(--text-faint);
-    font-size:14.5px;
-  }
+  .float{position:absolute;z-index:5;display:flex;align-items:center;gap:12px;background:rgba(251,246,239,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.8);border-radius:20px;padding:16px 20px;box-shadow:0 24px 48px -24px rgba(36,22,13,.45);animation:pop .9s var(--ease) both, bob 6s ease-in-out infinite;}
+  .float b{display:block;font-weight:600;color:var(--ink);font-size:16px;line-height:1.3;}
+  .float span{display:block;font-size:12px;color:var(--muted);line-height:1.4;}
+  .float.f1{left:-48px;top:24%;animation-delay:3.5s, 4.4s;}
+  .float.f2{right:-28px;bottom:16%;animation-delay:3.7s, 5.2s;}
+  .float .ico{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--cream-2);flex:none;}
+  .float .ico svg{width:20px;height:20px;stroke:var(--caramel-d);}
+  @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.92);}to{opacity:1;transform:none;}}
+  @keyframes bob{0%,100%{translate:0 0;}50%{translate:0 -8px;}}
+  .dot{position:relative;width:12px;height:12px;border-radius:50%;background:#6f9a62;flex:none;}
+  .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:ping 2s ease-out infinite;}
+  .dot.closed{background:#b8735a;}
+  .dot.closed::after{animation:none;}
+  @keyframes ping{from{transform:scale(1);opacity:.7;}to{transform:scale(2.8);opacity:0;}}
 
-  /* About */
-  .about{
-    display:grid;
-    grid-template-columns:0.9fr 1.1fr;
-    gap:60px;
-    align-items:center;
-  }
-  .about-img{
-    position:relative;
-  }
-  .about-img .photo-frame{
-    border-radius:var(--radius-card);
-    overflow:hidden;
-    box-shadow:0 30px 50px -28px rgba(20,42,58,0.35);
-  }
-  .about-img img{
-    width:100%;
-    height:420px;
-    object-fit:cover;
-  }
-  .about-text h2{font-size:clamp(26px, 3.2vw, 36px);}
-  .about-text p{
-    color:var(--text-muted);
-    font-size:17px;
-    max-width:56ch;
-  }
-  .about-badges{
-    display:flex;
-    gap:28px;
-    margin-top:28px;
-    flex-wrap:wrap;
-  }
-  .about-badge{
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .about-badge svg{width:22px;height:22px;stroke:var(--accent);flex-shrink:0;}
-  .about-badge span{
-    font-family:'Poppins', sans-serif;
-    font-weight:500;
-    font-size:14.5px;
-    color:var(--text);
-  }
+  .ring{position:absolute;z-index:6;left:-40px;bottom:-40px;width:144px;height:144px;border-radius:50%;background:var(--ink);display:grid;place-items:center;animation:pop .9s var(--ease) 3.9s both;}
+  .ring svg.txt{position:absolute;inset:0;width:100%;height:100%;animation:spin 24s linear infinite;}
+  .ring text{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.2em;fill:var(--cream);}
+  .ring .mid{width:48px;height:48px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
 
-  /* Contact */
-  .contact-wrap{
-    background:var(--bg-off);
-  }
-  .contact-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:48px;
-  }
-  .contact-info-card{
-    background:#fff;
-    border-radius:var(--radius-card);
-    border:1px solid var(--accent-soft);
-    padding:40px;
-  }
-  .contact-item{
-    display:flex;
-    gap:16px;
-    margin-bottom:26px;
-  }
-  .contact-item:last-child{margin-bottom:0;}
-  .contact-item .icon{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:var(--accent-soft);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-  }
-  .contact-item .icon svg{width:19px;height:19px;stroke:var(--accent);}
-  .contact-item h4{
-    font-size:15.5px;
-    margin-bottom:4px;
-    color:var(--accent-darker);
-  }
-  .contact-item p{
-    color:var(--text-muted);
-    font-size:15px;
-    margin-bottom:0;
-  }
-  .map-placeholder{
-    margin-top:30px;
-    height:180px;
-    border-radius:var(--radius-card-sm);
-    background:var(--accent-soft);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--accent-dark);
-    font-family:'Poppins', sans-serif;
-    font-size:13px;
-    font-weight:600;
-    letter-spacing:0.04em;
-    text-align:center;
-    padding:20px;
-  }
+  /* Traka */
+  .marquee{background:var(--espresso);color:var(--cream);overflow:hidden;padding:24px 0;border-block:1px solid rgba(255,255,255,.06);}
+  .marquee .track{display:flex;width:max-content;animation:marq 36s linear infinite;}
+  .marquee:hover .track{animation-play-state:paused;}
+  .marquee ul{display:flex;align-items:center;flex:none;}
+  .marquee li{display:flex;align-items:center;gap:40px;padding-right:40px;font-family:var(--serif);font-variation-settings:"SOFT" 100;font-size:32px;line-height:1;white-space:nowrap;}
+  .marquee li:nth-child(even){font-style:italic;color:var(--caramel);}
+  .marquee svg{width:28px;height:28px;flex:none;}
+  @keyframes marq{to{transform:translateX(-50%);}}
 
-  .booking-form{
-    background:#fff;
-    border-radius:var(--radius-card);
-    border:1px solid var(--accent-soft);
-    padding:40px;
-  }
-  .booking-form h3{font-size:21px;}
-  .booking-form .form-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-    margin-bottom:16px;
-  }
-  .booking-form input,
-  .booking-form select,
-  .booking-form textarea{
-    width:100%;
-    font-family:'Open Sans', sans-serif;
-    font-size:15px;
-    padding:13px 15px;
-    border:1px solid var(--accent-soft-2);
-    border-radius:var(--radius-btn);
-    background:var(--bg-off);
-    color:var(--text);
-    margin-bottom:16px;
-  }
-  .booking-form textarea{
-    resize:vertical;
-    min-height:100px;
-  }
-  .booking-form input:focus,
-  .booking-form select:focus,
-  .booking-form textarea:focus{
-    outline:none;
-    border-color:var(--accent);
-    background:#fff;
-  }
-  .booking-form .btn{width:100%;}
+  /* Zvuči poznato */
+  .signs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .sign{position:relative;background:#fff;border:1px solid var(--line);border-radius:28px;padding:32px 28px;display:flex;flex-direction:column;transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s;}
+  .sign:hover{transform:translateY(-8px);box-shadow:0 32px 48px -32px rgba(36,22,13,.35);border-color:rgba(194,154,110,.5);}
+  .sign .q{font-family:var(--serif);font-variation-settings:"SOFT" 100;font-size:24px;line-height:1.24;color:var(--ink);margin-bottom:16px;text-wrap:balance;}
+  .sign .q::before{content:"\201E";color:var(--caramel);}
+  .sign .q::after{content:"\201C";color:var(--caramel);}
+  .sign p{color:var(--muted);margin-bottom:24px;}
+  .sign .link{margin-top:auto;font-size:16px;align-self:flex-start;}
+  .sign .num{position:absolute;top:24px;right:28px;font-size:12px;letter-spacing:.12em;color:var(--caramel-d);}
 
-  /* CTA closing */
-  .cta-final{
-    background:linear-gradient(135deg, var(--accent-darker), var(--accent-dark) 55%, var(--accent));
-    color:#fff;
-    text-align:center;
-  }
-  .cta-final h2{color:#fff;font-size:clamp(28px, 3.6vw, 42px);}
-  .cta-final p{
-    color:rgba(255,255,255,0.82);
-    max-width:56ch;
-    margin-left:auto;
-    margin-right:auto;
-    font-size:17px;
-  }
-  .cta-final .btn-row{
-    display:flex;
-    justify-content:center;
-    gap:16px;
-    flex-wrap:wrap;
-    margin-top:30px;
-  }
+  /* Usluge */
+  .services{background:var(--cream-2);}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .svc{display:flex;flex-direction:column;}
+  .svc .ph{position:relative;aspect-ratio:4/5;border-radius:200px 200px 28px 28px;overflow:hidden;margin-bottom:28px;background:var(--cream-3);}
+  .svc .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease);}
+  .svc:hover .ph img{transform:scale(1.06);}
+  .svc .ph .n{position:absolute;left:20px;bottom:20px;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--cream);font-family:var(--serif);font-size:20px;color:var(--ink);}
+  .svc h3{font-size:32px;margin-bottom:12px;}
+  .svc p{color:var(--muted);}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 28px;}
+  .tags li{font-size:12px;font-weight:500;letter-spacing:.04em;padding:8px 12px;border:1px solid rgba(58,34,20,.18);border-radius:999px;color:var(--espresso);}
+  .svc .link{margin-top:auto;align-self:flex-start;}
 
-  /* Footer */
-  footer{
-    background:var(--accent-darker);
-    color:rgba(255,255,255,0.7);
-    padding-top:56px;
-    padding-bottom:30px;
-  }
-  .footer-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    flex-wrap:wrap;
-    gap:32px;
-    padding-bottom:36px;
-    border-bottom:1px solid rgba(255,255,255,0.12);
-    margin-bottom:24px;
-  }
-  .footer-logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .footer-logo img{height:46px;width:auto;}
-  .footer-logo span{
-    font-family:'Poppins', sans-serif;
-    font-weight:600;
-    color:#fff;
-    font-size:16px;
-  }
-  .footer-links{
-    display:flex;
-    gap:30px;
-    flex-wrap:wrap;
-  }
-  .footer-links a{
-    font-size:14.5px;
-    color:rgba(255,255,255,0.75);
-  }
-  .footer-links a:hover{color:#fff;}
-  .footer-bottom{
-    font-size:13.5px;
-    color:rgba(255,255,255,0.5);
-    text-align:center;
-  }
+  /* Proces */
+  .proc{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:start;}
+  .proc-side{position:sticky;top:120px;}
+  .proc-side .head{margin-bottom:40px;}
+  .stack{position:relative;aspect-ratio:5/4;border-radius:28px;overflow:hidden;background:var(--cream-3);}
+  .stack img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .8s var(--ease), transform 1.4s var(--ease);}
+  .stack img.on{opacity:1;transform:none;}
+  .stack .lbl{position:absolute;left:16px;top:16px;z-index:2;background:rgba(251,246,239,.92);border-radius:999px;padding:8px 16px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--espresso);}
+  .steps{position:relative;padding-left:96px;}
+  .rail{position:absolute;left:32px;top:24px;bottom:24px;width:2px;background:repeating-linear-gradient(to bottom, rgba(58,34,20,.32) 0 8px, transparent 8px 16px);}
+  .rail-cut{position:absolute;left:0;top:0;width:2px;height:calc(var(--p, 0) * 100%);background:var(--espresso);}
+  .rail-sc{position:absolute;left:1px;top:calc(var(--p, 0) * 100%);width:64px;height:64px;transform:translate(-50%,-50%) rotate(90deg);}
+  .rail-sc .b1{transform:rotate(calc(var(--snip, 10) * -1deg));}
+  .rail-sc .b2{transform:rotate(calc(var(--snip, 10) * 1deg));}
+  .step{position:relative;padding:40px 0 48px;border-bottom:1px solid var(--line);opacity:.4;transition:opacity .6s var(--ease);}
+  .step:last-child{border-bottom:0;}
+  .step.on{opacity:1;}
+  .step::before{content:"";position:absolute;left:-68px;top:52px;width:12px;height:12px;border-radius:50%;background:var(--cream);border:2px solid rgba(58,34,20,.4);transition:background .4s, border-color .4s, transform .4s var(--ease);}
+  .step.on::before{background:var(--caramel);border-color:var(--caramel);transform:scale(1.32);}
+  .step .k{font-size:12px;font-weight:600;letter-spacing:.16em;color:var(--caramel-d);display:block;margin-bottom:12px;}
+  .step h3{font-size:clamp(28px, 3vw, 40px);margin-bottom:12px;}
+  .step p{color:var(--muted);font-size:20px;margin:0;max-width:520px;}
+  .step .step-img{display:none;}
 
-  /* Reveal animation */
-  .reveal{
-    opacity:1;
-    transform:translateY(0);
-    transition:opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.pre{
-    opacity:0.001;
-    transform:translateY(14px);
-  }
-  .reveal.is-visible{
-    opacity:1;
-    transform:translateY(0);
-  }
+  /* Pribor */
+  .tools{background:var(--ink);color:rgba(251,246,239,.76);position:relative;overflow:hidden;}
+  .tools h2,.tools h3{color:var(--cream);}
+  .tools em{color:var(--caramel);}
+  .tools .eyebrow{color:var(--caramel);}
+  .tools .lead{color:rgba(251,246,239,.66);}
+  .tools-grid{display:grid;grid-template-columns:4fr 8fr;gap:64px;align-items:center;}
+  .board{position:relative;border-radius:28px;overflow:visible;}
+  .board img{width:100%;height:auto;aspect-ratio:1800/1343;border-radius:28px;filter:contrast(1.04);}
+  .hs{position:absolute;left:var(--x);top:var(--y);width:32px;height:32px;margin:-16px 0 0 -16px;border-radius:50%;border:0;padding:0;background:var(--caramel);cursor:pointer;display:grid;place-items:center;z-index:2;transition:transform .3s var(--ease), background .3s;}
+  .hs::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--caramel);animation:ping 2.4s ease-out infinite;}
+  .hs::after{content:"";width:12px;height:12px;background:linear-gradient(var(--ink),var(--ink)) center/12px 2px no-repeat, linear-gradient(var(--ink),var(--ink)) center/2px 12px no-repeat;transition:transform .4s var(--ease);}
+  .hs:hover,.hs.on,.hs:focus-visible{transform:scale(1.16);background:var(--cream);z-index:6;}
+  .hs.on::after{transform:rotate(45deg);}
+  .tip{position:absolute;left:calc(100% + 16px);top:50%;width:288px;transform:translateY(-50%) translateX(-8px);background:var(--cream);color:var(--text);border-radius:16px;padding:16px 20px;text-align:left;pointer-events:none;opacity:0;transition:opacity .3s var(--ease), transform .3s var(--ease);box-shadow:0 24px 48px -16px rgba(0,0,0,.5);}
+  .hs.l .tip{left:auto;right:calc(100% + 16px);transform:translateY(-50%) translateX(8px);}
+  .tip b{display:block;white-space:nowrap;font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.2;color:var(--ink);margin-bottom:4px;}
+  .tip span{display:block;font-family:var(--sans);font-size:16px;line-height:1.5;color:var(--muted);}
+  .hs:hover .tip,.hs:focus-visible .tip,.hs.on .tip{opacity:1;transform:translateY(-50%);}
+  .tool-list{margin-top:40px;border-top:1px solid rgba(251,246,239,.14);}
+  .tool-list li{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid rgba(251,246,239,.14);font-size:16px;cursor:default;transition:color .3s, padding .4s var(--ease);}
+  .tool-list li span:last-child{color:rgba(251,246,239,.4);font-size:12px;letter-spacing:.12em;}
+  .tool-list li.on{color:var(--cream);padding-left:12px;}
+  .tool-list li.on span:last-child{color:var(--caramel);}
+
+  /* O nama */
+  .about{display:grid;grid-template-columns:5fr 7fr;gap:96px;align-items:center;}
+  .about-ph{position:relative;}
+  .about-ph .frame{aspect-ratio:720/881;border-radius:999px 999px 28px 28px;overflow:hidden;background:var(--cream-3);}
+  .about-ph .frame img{width:100%;height:100%;object-fit:cover;}
+  .about-ph .stamp{position:absolute;right:-32px;top:32px;width:128px;height:128px;border-radius:50%;background:var(--cream);box-shadow:0 24px 48px -24px rgba(36,22,13,.4);padding:8px;animation:bob 7s ease-in-out infinite;}
+  .about-ph .cap{position:absolute;left:24px;bottom:24px;background:rgba(251,246,239,.94);border-radius:16px;padding:12px 16px;font-size:12px;color:var(--muted);line-height:1.4;}
+  .about-ph .cap b{display:block;font-size:16px;color:var(--ink);font-weight:600;}
+  .about-txt .pull{font-family:var(--serif);font-variation-settings:"SOFT" 100;font-style:italic;font-size:clamp(28px, 2.8vw, 36px);line-height:1.24;color:var(--ink);margin:32px 0;padding-left:28px;border-left:2px solid var(--caramel);text-wrap:balance;}
+  .about-txt p{font-size:20px;color:var(--muted);max-width:600px;}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+  .facts div{border-top:1px solid var(--line);padding-top:16px;}
+  .facts b{display:block;font-family:var(--serif);font-weight:400;font-size:28px;color:var(--ink);line-height:1.2;}
+  .facts span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+
+  /* Radno vreme i lokacija */
+  .visit{background:var(--cream-2);}
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:40px;}
+  .status{display:inline-flex;align-items:center;gap:12px;padding:8px 16px 8px 12px;background:var(--cream);border-radius:999px;font-size:16px;font-weight:500;color:var(--ink);margin-bottom:28px;}
+  .hours li{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px dashed rgba(58,34,20,.2);font-size:16px;}
+  .hours li:last-child{border-bottom:0;}
+  .hours li span:last-child{font-weight:500;color:var(--ink);}
+  .hours li.today{position:relative;color:var(--ink);font-weight:600;}
+  .hours li.today{background:linear-gradient(90deg, rgba(194,154,110,.16), transparent);margin:0 -16px;padding-left:16px;padding-right:16px;border-radius:12px;}
+  .hours li.today span:first-child::after{content:" · danas";color:var(--caramel-d);font-weight:500;}
+  .loc{display:flex;flex-direction:column;}
+  .loc .addr{font-family:var(--serif);font-variation-settings:"SOFT" 100;font-size:40px;line-height:1.1;color:var(--ink);margin:4px 0 8px;}
+  .loc .city{color:var(--muted);font-size:20px;margin-bottom:28px;}
+  .loc-rows{border-top:1px solid var(--line);margin-bottom:32px;}
+  .loc-rows a,.loc-rows div{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:16px;}
+  .loc-rows svg{width:20px;height:20px;stroke:var(--caramel-d);flex:none;}
+  .loc-rows a:hover{color:var(--caramel-d);}
+  .loc .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;}
+  .copied{font-size:12px;color:var(--caramel-d);align-self:center;opacity:0;transition:opacity .3s;}
+  .copied.on{opacity:1;}
+
+  /* FAQ */
+  .faq{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:start;}
+  .faq>.head{position:sticky;top:120px;}
+  .faq details{border-bottom:1px solid var(--line);}
+  .faq details:first-child{border-top:1px solid var(--line);}
+  .faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:28px 0;cursor:pointer;font-family:var(--serif);font-variation-settings:"SOFT" 100;font-size:24px;line-height:1.3;color:var(--ink);text-wrap:balance;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary i{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid rgba(58,34,20,.24);flex:none;transition:background .3s, transform .5s var(--ease);}
+  .faq summary i::before,.faq summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;margin:-1px 0 0 -6px;background:var(--ink);transition:transform .4s var(--ease);}
+  .faq summary i::after{transform:rotate(90deg);}
+  .faq details[open] summary i{background:var(--caramel);border-color:var(--caramel);transform:rotate(180deg);}
+  .faq details[open] summary i::after{transform:rotate(0);}
+  .faq details p{font-size:20px;color:var(--muted);max-width:640px;margin:0;padding:0 64px 28px 0;}
+
+  /* Kontakt */
+  .contact{background:var(--cream-2);}
+  .contact-grid{display:grid;grid-template-columns:5fr 7fr;gap:28px;align-items:stretch;}
+  .phone-card{background:var(--espresso);color:rgba(251,246,239,.76);border-radius:28px;padding:40px;display:flex;flex-direction:column;position:relative;overflow:hidden;}
+  .phone-card h3{color:var(--cream);font-size:32px;}
+  .phone-card .big{font-family:var(--serif);font-variation-settings:"SOFT" 100;font-size:clamp(36px, 3.6vw, 48px);color:var(--caramel);line-height:1.1;margin:8px 0 28px;display:block;white-space:nowrap;}
+  .phone-card .big:hover{color:var(--cream);}
+  .phone-card .small{font-size:16px;margin-bottom:8px;}
+  .phone-card .btns{margin-top:auto;padding-top:32px;}
+  .phone-card .paw{position:absolute;right:-24px;bottom:-24px;width:160px;height:160px;opacity:.08;fill:var(--cream);transform:rotate(-16deg);}
+  form.card{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px;}
+  form.card h3,form.card .full{grid-column:1/-1;}
+  form.card h3{margin-bottom:0;font-size:32px;}
+  form.card .sub{grid-column:1/-1;color:var(--muted);margin:-8px 0 8px;}
+  .field{position:relative;}
+  .field input,.field select,.field textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--cream);border:1px solid rgba(58,34,20,.16);border-radius:16px;padding:28px 16px 12px;transition:border-color .3s, background .3s, box-shadow .3s;appearance:none;-webkit-appearance:none;}
+  .field textarea{min-height:128px;resize:vertical;}
+  .field select{background-image:linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%);background-position:calc(100% - 24px) 50%, calc(100% - 18px) 50%;background-size:6px 6px;background-repeat:no-repeat;}
+  .field label{position:absolute;left:16px;top:20px;font-size:16px;color:var(--muted);pointer-events:none;transform-origin:left top;transition:transform .3s var(--ease), color .3s;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--caramel);background:#fff;box-shadow:0 0 0 4px rgba(194,154,110,.2);}
+  .field input:focus+label,.field input:not(:placeholder-shown)+label,
+  .field textarea:focus+label,.field textarea:not(:placeholder-shown)+label,
+  .field select+label{transform:translateY(-12px) scale(.75);color:var(--caramel-d);}
+  form.card .btn{justify-self:start;}
+  .form-note{grid-column:1/-1;font-size:16px;color:var(--caramel-d);margin:0;min-height:0;}
+
+  /* Završni CTA */
+  .final{position:relative;background:var(--ink);color:rgba(251,246,239,.76);text-align:center;overflow:hidden;}
+  .final h2{color:var(--cream);font-size:clamp(40px, 6vw, 80px);}
+  .final em{color:var(--caramel);}
+  .final .lead{color:rgba(251,246,239,.7);max-width:600px;margin:0 auto 40px;}
+  .final .cta-row{justify-content:center;animation:none;}
+  .final .bubbles{border-radius:0;}
+  .final .bubbles i{animation-name:riseTall;background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.75) 0 6%, transparent 20%), radial-gradient(circle, transparent 58%, rgba(194,154,110,.6) 100%);border-color:rgba(251,246,239,.45);box-shadow:inset -2px -4px 8px rgba(130,180,210,.18);}
+  @keyframes riseTall{0%{opacity:0;transform:translate(0,0) scale(.5);}12%{opacity:.7;}50%{transform:translate(var(--dx),-320px) scale(1);}88%{opacity:.5;}100%{opacity:0;transform:translate(0,-640px) scale(1.08);}}
+  .final .wrap{position:relative;z-index:5;}
+
+  /* Futer */
+  footer{background:var(--ink);color:rgba(251,246,239,.6);border-top:1px solid rgba(251,246,239,.1);padding:64px 0 32px;font-size:16px;}
+  .foot{display:grid;grid-template-columns:4fr 2fr 3fr 3fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(251,246,239,.1);}
+  .foot .brand b{color:var(--cream);}
+  .foot .brand small{color:rgba(251,246,239,.5);}
+  .foot .brand img{background:var(--cream);border-radius:50%;}
+  .foot h4{margin:0 0 16px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--caramel);font-weight:600;}
+  .foot li{margin-bottom:8px;}
+  .foot a:hover{color:var(--cream);}
+  .foot p{margin-top:20px;max-width:320px;}
+  .copy{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:28px;font-size:12px;color:rgba(251,246,239,.4);}
+
+  .visit-grid>*,.contact-grid>*,.faq>*,.about>*,.tools-grid>*,.foot>*,.proc>*{min-width:0;}
+  .loc-rows,.foot li{overflow-wrap:anywhere;}
+
+  /* Reveal na skrol (samo kad JS radi) */
+  .js .rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease), transform 1s var(--ease);}
+  .js .rv.in{opacity:1;transform:none;}
+  .js .rv-img{clip-path:inset(12% 0 0 0 round 28px);transition:clip-path 1.4s var(--ease);}
+  .js .rv-img.in{clip-path:inset(0 0 0 0 round 0px);}
 
   /* Responsive */
-  @media (max-width:991px){
-    .nav-desktop{display:none;}
-    .hamburger{display:flex;}
-    .services-grid{grid-template-columns:repeat(2, 1fr);}
-    .pricing-grid{grid-template-columns:1fr;}
-    .about{grid-template-columns:1fr;gap:36px;}
-    .about-img img{height:340px;}
-    .contact-grid{grid-template-columns:1fr;}
+  @media (max-width:1140px){
+    .float.f2{right:-8px;}
+    .hero .lead{font-size:16px;}
+    .signs{grid-template-columns:repeat(2,1fr);}
+    .nav ul{gap:24px;}
   }
-
-  @media (max-width:768px){
-    .wrap{padding-left:20px;padding-right:20px;}
-    section{padding-top:64px;padding-bottom:64px;}
-    .pain{padding-top:48px;padding-bottom:48px;}
-    .hero-content{padding-top:80px;padding-bottom:90px;}
-    .services-grid{grid-template-columns:1fr;}
-    .booking-form .form-row{grid-template-columns:1fr;}
-    .about-badges{gap:18px;}
-    .footer-top{flex-direction:column;}
+  @media (max-width:991px){
+    :root{--sec:96px;}
+    .nav{display:none;}
+    .burger{display:block;}
+    .mnav{position:fixed;inset:0;z-index:40;background:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:96px 24px 40px;opacity:0;visibility:hidden;transition:opacity .4s var(--ease), visibility .4s;}
+    .mnav.open{opacity:1;visibility:visible;}
+    .mnav a:not(.btn){font-family:var(--serif);font-variation-settings:"SOFT" 100;font-size:40px;color:var(--ink);padding:8px 0;transform:translateY(16px);opacity:0;transition:transform .6s var(--ease), opacity .6s var(--ease);}
+    .mnav.open a:not(.btn){transform:none;opacity:1;}
+    .mnav.open a:nth-child(2){transition-delay:.05s;} .mnav.open a:nth-child(3){transition-delay:.1s;} .mnav.open a:nth-child(4){transition-delay:.15s;} .mnav.open a:nth-child(5){transition-delay:.2s;}
+    .mnav .btn{margin-top:32px;align-self:flex-start;}
+    .hdr{z-index:60;}
+    .topbar li.hide-m{display:none;}
+    .hero{padding-top:40px;}
+    .hero .wrap{grid-template-columns:1fr;gap:72px;}
+    .hero-art{justify-self:center;max-width:440px;}
+    .svc-grid{grid-template-columns:1fr;gap:56px;max-width:560px;margin:0 auto;}
+    .proc{grid-template-columns:1fr;gap:48px;}
+    .proc-side{position:static;}
+    .stack{display:none;}
+    .step .step-img{display:block;margin-top:24px;border-radius:20px;aspect-ratio:16/10;width:100%;object-fit:cover;}
+    .tools-grid{grid-template-columns:1fr;gap:48px;}
+    .about{grid-template-columns:1fr;gap:64px;}
+    .about-ph{max-width:420px;}
+    .visit-grid,.contact-grid,.faq{grid-template-columns:1fr;}
+    .faq{gap:16px;}
+    .faq>.head{position:static;}
+    .foot{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:700px){
+    :root{--sec:80px;}
+    .wrap{padding:0 20px;}
+    .topbar ul{gap:16px;}
+    .brand small{display:none;}
+    .brand img{width:48px;height:48px;}
+    .lead{font-size:16px;}
+    .hero .lead{font-size:16px;}
+    .head{margin-bottom:48px;}
+    .float.f1{left:-8px;top:16%;}
+    .float.f2{right:-8px;bottom:12%;}
+    .float{padding:12px 16px;}
+    .ring{width:112px;height:112px;left:-8px;bottom:-32px;}
+    .ring .mid{width:36px;height:36px;}
+    .ring text{font-size:12px;}
+    .signs{grid-template-columns:1fr;}
+    .marquee li{font-size:24px;gap:28px;padding-right:28px;}
+    .steps{padding-left:64px;}
+    .rail{left:20px;}
+    .step::before{left:-48px;}
+    .step p{font-size:16px;}
+    .rail-sc{width:48px;height:48px;}
+    .hs .tip{display:none;}
+    .about-ph .stamp{right:-8px;width:96px;height:96px;}
+    .about-txt p,.faq details p{font-size:16px;}
+    .facts{grid-template-columns:1fr;}
+    .card,.phone-card{padding:28px 20px;}
+    .hours li.today{margin:0 -12px;padding-left:12px;padding-right:12px;}
+    .loc .addr{font-size:32px;}
+    .phone-card .big{font-size:32px;}
+    .status{font-size:12px;}
+    .faq summary{font-size:20px;}
+    .faq details p{padding-right:0;}
+    form.card{grid-template-columns:1fr;}
+    form.card .btn{justify-self:stretch;}
+    .foot{grid-template-columns:1fr;}
+    .cta-row .btn{flex:1 1 100%;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-delay:0s !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+    .cut,.bubbles,.arch::after{display:none;}
+    .marquee .track{animation:none;}
+    html{scroll-behavior:auto;}
   }
 </style>
 </head>
 <body>
 
-<header class="site-header" id="siteHeader">
-  <div class="wrap header-inner">
-    <a href="#home" class="logo">
-      <img src="assets/logo.png" alt="Lucky Dog Grooming by Verica logo">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3" fill="none" stroke-width="1.8"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" fill="none" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke-width="1.8"/><path d="M3 7l9 6 9-6" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" stroke-width="1.8"/></symbol>
+    <symbol id="i-arr" viewBox="0 0 12 12"><path d="M1 6h10M7 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="#c29a6e" opacity=".22"/><path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="#8f6538" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-paw" viewBox="0 0 64 64"><ellipse cx="32" cy="42" rx="14" ry="12"/><ellipse cx="14" cy="28" rx="6" ry="8"/><ellipse cx="25" cy="17" rx="6" ry="8"/><ellipse cx="39" cy="17" rx="6" ry="8"/><ellipse cx="50" cy="28" rx="6" ry="8"/></symbol>
+    <symbol id="i-sc" viewBox="0 0 32 32"><circle cx="8" cy="8" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="24" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11.5 10.5L29 24M11.5 21.5L29 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="topbar">
+  <div class="wrap">
+    <ul>
+      <li class="hide-m"><svg><use href="#i-pin"/></svg>Svetog Save 46, Svilajnac</li>
+      <li class="hide-m"><svg><use href="#i-clock"/></svg>Pon-Sub 9-17h, nedeljom ne radimo</li>
+    </ul>
+    <ul>
+      <li><svg><use href="#i-phone"/></svg><a href="tel:+381621602636">062 160 26 36</a></li>
+      <li class="hide-m"><svg><use href="#i-mail"/></svg><a href="mailto:info@luckydog-grooming.rs">info@luckydog-grooming.rs</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="Lucky Dog Grooming, na vrh stranice">
+      <img src="assets/logo.png" alt="" width="56" height="56">
+      <span><b>Lucky Dog</b><small>Grooming by Verica</small></span>
     </a>
-    <nav class="nav-desktop">
-      <ul class="nav-links">
+    <nav class="nav" aria-label="Glavna navigacija">
+      <ul>
         <li><a href="#usluge">Usluge</a></li>
-        <li><a href="#cenovnik">Cenovnik</a></li>
+        <li><a href="#termin">Kako ide termin</a></li>
         <li><a href="#o-nama">O nama</a></li>
+        <li><a href="#radno-vreme">Radno vreme</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
-      <a href="#kontakt" class="btn btn-primary">Zakaži termin</a>
+      <a href="tel:+381621602636" class="btn btn-primary">Pozovi salon<span class="arr"><svg><use href="#i-arr"/></svg></span></a>
     </nav>
-    <button class="hamburger" id="hamburgerBtn" aria-label="Otvori meni" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#usluge">Usluge</a>
-    <a href="#cenovnik">Cenovnik</a>
-    <a href="#o-nama">O nama</a>
-    <a href="#kontakt">Kontakt</a>
-    <a href="#kontakt" class="btn btn-primary">Zakaži termin</a>
+    <button class="burger" id="burger" aria-label="Otvori meni" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
   </div>
 </header>
+<nav class="mnav" id="mnav" aria-label="Mobilna navigacija">
+  <a href="#usluge">Usluge</a>
+  <a href="#termin">Kako ide termin</a>
+  <a href="#o-nama">O nama</a>
+  <a href="#radno-vreme">Radno vreme</a>
+  <a href="#kontakt">Kontakt</a>
+  <a href="tel:+381621602636" class="btn btn-primary">Pozovi 062 160 26 36<span class="arr"><svg><use href="#i-arr"/></svg></span></a>
+</nav>
 
-<section class="hero" id="home">
-  <div class="hero-bg">
-    <img src="assets/11062b_8f12d5ea0e4e466ab5cb873eb62817fa~mv2_d_5410_2976_s_4_2.jpg" alt="Nasapunjan pas tokom kupanja u salonu">
-  </div>
-  <div class="wrap">
-    <div class="hero-content">
-      <span class="eyebrow" style="color:#cfe0ea;">Lucky Dog Grooming by Verica</span>
-      <h1>Nega za tvog psa, bez stresa i bez haosa kod kuće</h1>
-      <p>Šišanje, kupanje i kompletna nega na jednom mestu. Dovedeš psa, mi se pobrinemo za ostalo, ti dobiješ mirisnog i negovanog ljubimca.</p>
-      <a href="#kontakt" class="btn btn-primary">Zakaži termin za svog psa</a>
-    </div>
-  </div>
-</section>
+<main id="top">
 
-<section class="pain">
+<section class="hero">
   <div class="wrap">
-    <p>Znaš taj osećaj kad dlaka počne da se čvoruga, a nokti su predugi za normalnu šetnju. Kupanje kod kuće znači mokro kupatilo, nervoznog psa i šampon koji mu možda i ne odgovara.</p>
-    <p>Nemaš uvek vremena, alat ni iskustvo da to uradiš kako treba, i to je sasvim u redu.</p>
-  </div>
-</section>
+    <div class="hero-copy">
+      <span class="eyebrow">Salon za negu pasa · Svilajnac</span>
+      <h1><span class="ln"><span>Srećan, zdrav</span></span><span class="ln"><span>i <em>negovan</em> pas.</span></span></h1>
+      <p class="lead"><span class="s">Šišanje, kupanje, feniranje i nokti na jednom mestu.</span><span class="s">Dovedeš psa, mi se pobrinemo za ostalo.</span></p>
+      <div class="cta-row">
+        <a href="tel:+381621602636" class="btn btn-primary">Pozovi i zakaži termin<span class="arr"><svg><use href="#i-arr"/></svg></span></a>
+        <a href="#kontakt" class="btn btn-secondary">Pošalji poruku</a>
+      </div>
+      <ul class="ticks">
+        <li><svg><use href="#i-check"/></svg>Kompletna usluga</li>
+        <li><svg><use href="#i-check"/></svg>Kupanje i sušenje</li>
+        <li><svg><use href="#i-check"/></svg>Sečenje noktiju</li>
+      </ul>
+    </div>
 
-<section id="usluge">
-  <div class="wrap">
-    <div class="section-head reveal pre">
-      <span class="eyebrow">Usluge</span>
-      <h2>Šta radimo za tvog psa</h2>
-      <p>Od kratkog letnjeg šišanja do kompletne nege dlake, noktiju i ušiju. Pristup prilagođavamo rasi i temperamentu psa.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal pre">
-        <div class="service-img">
-          <img src="assets/4951af_b895238ee17b4acfb91137a42d0df001~mv2_d_4464_2976_s_4_2.jpg" alt="Šišanje pomeranca makazama u salonu">
-        </div>
-        <div class="service-body">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>
-          </div>
-          <h3>Šišanje prilagođeno rasi</h3>
-          <p>Sečemo dlaku po meri rase i tvojih želja, od kratkog letnjeg reza do oblika koji prati standard rase.</p>
-        </div>
+    <div class="hero-art">
+      <div class="arch">
+        <img src="assets/hero-jorkir.webp" alt="Jorkširski terijer na šišanju, groomerka drži makaze" width="2000" height="1100" fetchpriority="high">
       </div>
-      <div class="service-card reveal pre">
-        <div class="service-img">
-          <img src="assets/4951af_6c28e284d3b04d239656044a8d5a66d1~mv2.png" alt="Kupanje šnaucera šamponom u salonu">
-        </div>
-        <div class="service-body">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2 3 5 6 5 10a5 5 0 0 1-10 0c0-4 3-7 5-10z"></path></svg>
-          </div>
-          <h3>Kupanje i sušenje</h3>
-          <p>Perem šamponom za osetljivu kožu, posle feniramo i raščešljavamo dlaku do kraja, bez čvorova.</p>
-        </div>
-      </div>
-      <div class="service-card reveal pre">
-        <div class="service-img">
-          <img src="assets/4951af_a5d088f931a64fcb8401f6125ce61050~mv2_d_2000_1258_s_2.png" alt="Sečenje noktiju buldogu u salonu">
-        </div>
-        <div class="service-body">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-          </div>
-          <h3>Sečenje noktiju i čišćenje ušiju</h3>
-          <p>Skraćujem nokte bez štipanja i čistim uši redovno, da sprečim neprijatne iritacije.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="cenovnik" class="pricing-wrap">
-  <div class="wrap">
-    <div class="section-head center reveal pre">
-      <span class="eyebrow">Cenovnik</span>
-      <h2>Okvirne cene po veličini psa</h2>
-      <p>Finalna cena zavisi od stanja dlake, dužine šišanja i temperamenta psa. Tačan iznos dobijaš na pregledu pre termina.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="price-card reveal pre">
-        <h3>Mali psi</h3>
-        <div class="price-sub">do 10 kg, npr. jorkšir, čivava, pomeranac</div>
-        <div class="price-row"><span>Kupanje i sušenje</span><span>od 1.500 din</span></div>
-        <div class="price-row"><span>Šišanje</span><span>od 2.000 din</span></div>
-        <div class="price-row"><span>Kompletna nega</span><span>od 2.800 din</span></div>
-      </div>
-      <div class="price-card featured reveal pre">
-        <h3>Srednji psi</h3>
-        <div class="price-sub">10 - 25 kg, npr. kokeр, bigl, šnaucer</div>
-        <div class="price-row"><span>Kupanje i sušenje</span><span>od 2.000 din</span></div>
-        <div class="price-row"><span>Šišanje</span><span>od 2.800 din</span></div>
-        <div class="price-row"><span>Kompletna nega</span><span>od 3.800 din</span></div>
-      </div>
-      <div class="price-card reveal pre">
-        <h3>Veliki psi</h3>
-        <div class="price-sub">preko 25 kg, npr. labrador, zlatni retriver</div>
-        <div class="price-row"><span>Kupanje i sušenje</span><span>od 2.500 din</span></div>
-        <div class="price-row"><span>Šišanje</span><span>od 3.500 din</span></div>
-        <div class="price-row"><span>Kompletna nega</span><span>od 4.800 din</span></div>
-      </div>
-    </div>
-    <p class="price-note">Kompletna nega uključuje kupanje, šišanje, sečenje noktiju i čišćenje ušiju.</p>
-  </div>
-</section>
+      <!-- Potpisna animacija: makaze iseku papir sa logom po isprekidanoj liniji, papir padne i otkrije psa -->
+      <svg class="cut" viewBox="0 0 400 500" aria-hidden="true">
+        <defs>
+          <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.2" fill="#c29a6e" opacity=".4"/></pattern>
+          <path id="cutp" d="M200,488 L36,488 A24,24 0 0 1 12,464 L12,200 A188,188 0 0 1 388,200 L388,464 A24,24 0 0 1 364,488 Z"/>
+        </defs>
+        <g class="paper">
+          <path d="M0,200 A200,200 0 0 1 400,200 L400,476 A24,24 0 0 1 376,500 L24,500 A24,24 0 0 1 0,476 Z" fill="#f1e4d1"/>
+          <path d="M0,200 A200,200 0 0 1 400,200 L400,476 A24,24 0 0 1 376,500 L24,500 A24,24 0 0 1 0,476 Z" fill="url(#dots)"/>
+          <image href="assets/logo.png" x="110" y="170" width="180" height="180"/>
+          <use href="#cutp" fill="none" stroke="#c29a6e" stroke-width="1.6" stroke-dasharray="6 6"/>
+          <use href="#cutp" fill="none" stroke="#3a2214" stroke-width="2" pathLength="1000" stroke-dasharray="1000" stroke-dashoffset="1000">
+            <animate attributeName="stroke-dashoffset" from="1000" to="0" begin="0.6s" dur="2.4s" fill="freeze"/>
+          </use>
+        </g>
+        <g class="sc-out">
+          <g opacity="0">
+            <set attributeName="opacity" to="1" begin="0.5s"/>
+            <animateMotion begin="0.6s" dur="2.4s" fill="freeze" rotate="auto"><mpath href="#cutp"/></animateMotion>
+            <g transform="scale(.62)">
+              <g class="b2"><g transform="scale(1,-1)">
+                <path d="M-2,-1 C14,-6 40,-7 68,-1 C40,1 14,2 -2,3 Z" fill="#e6e8ea" stroke="#3a2214" stroke-width="1.4" stroke-linejoin="round"/>
+                <path d="M-2,2 L-16,11" stroke="#3a2214" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="-26" cy="17" r="10" fill="none" stroke="#c29a6e" stroke-width="5"/>
+              </g></g>
+              <g class="b1">
+                <path d="M-2,-1 C14,-6 40,-7 68,-1 C40,1 14,2 -2,3 Z" fill="#f4f5f6" stroke="#3a2214" stroke-width="1.4" stroke-linejoin="round"/>
+                <path d="M-2,2 L-16,11" stroke="#3a2214" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="-26" cy="17" r="10" fill="none" stroke="#c29a6e" stroke-width="5"/>
+              </g>
+              <circle r="3" fill="#3a2214"/>
+            </g>
+          </g>
+        </g>
+      </svg>
 
-<section id="o-nama">
-  <div class="wrap">
-    <div class="about">
-      <div class="about-img reveal pre">
-        <div class="photo-frame">
-          <img src="assets/Verica_Petrovic.webp" alt="Verica Petrović, vlasnica salona, sa svojim psom">
-        </div>
+      <div class="bubbles" aria-hidden="true">
+        <i style="--x:58%;--s:28px;--d:4.2s;--t:7s;--dx:-16px"></i>
+        <i style="--x:72%;--s:16px;--d:5.1s;--t:6s;--dx:12px"></i>
+        <i style="--x:40%;--s:20px;--d:6.4s;--t:8s;--dx:20px"></i>
+        <i style="--x:84%;--s:36px;--d:7.3s;--t:9s;--dx:-24px"></i>
+        <i style="--x:64%;--s:12px;--d:8.2s;--t:6.5s;--dx:8px"></i>
+        <i style="--x:28%;--s:24px;--d:9.6s;--t:8.5s;--dx:-12px"></i>
+        <i style="--x:50%;--s:16px;--d:11s;--t:7.5s;--dx:16px"></i>
       </div>
-      <div class="about-text reveal pre">
-        <span class="eyebrow">O nama</span>
-        <h2>Upoznaj Vericu</h2>
-        <p>Verica se bavi grooming-om godinama i navikla je na pse svih temperamenta, od onih mirnih do onih koji prvi put sede na stolu za šišanje.</p>
-        <p>Svakom psu pristupa polako, bez žurbe i bez grube sile. Cilj je jednostavan: da tvoj pas izađe negovan i da se sledeći put raduje dolasku u salon.</p>
-        <div class="about-badges">
-          <div class="about-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-0.5z"></path></svg>
-            <span>Godine iskustva u grooming-u</span>
-          </div>
-          <div class="about-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21l7.78-7.55 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-            <span>Strpljiv pristup svakom psu</span>
-          </div>
-          <div class="about-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-            <span>Pažljiva nega, bez žurbe</span>
-          </div>
-        </div>
+
+      <div class="float f1" role="status">
+        <i class="dot" id="statusDot"></i>
+        <div><b id="statusTxt">Pon-Sub 9-17h</b><span id="statusSub">Nedeljom ne radimo</span></div>
+      </div>
+      <div class="float f2">
+        <span class="ico"><svg><use href="#i-pin"/></svg></span>
+        <div><b>Svetog Save 46</b><span>Svilajnac</span></div>
+      </div>
+      <div class="ring" aria-hidden="true">
+        <svg class="txt" viewBox="0 0 144 144">
+          <defs><path id="circ" d="M72,72 m-54,0 a54,54 0 1,1 108,0 a54,54 0 1,1 -108,0"/></defs>
+          <text><textPath href="#circ" textLength="336">GROOMING · BY VERICA · SVILAJNAC · </textPath></text>
+        </svg>
+        <svg class="mid" style="color:var(--caramel)"><use href="#i-sc"/></svg>
       </div>
     </div>
   </div>
 </section>
 
-<section id="kontakt" class="contact-wrap">
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <ul>
+      <li>Pranje<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+      <li>Feniranje<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+      <li>Četkanje<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+      <li>Šišanje<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+      <li>Sečenje noktiju<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+      <li>Svilajnac<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+    </ul>
+    <ul>
+      <li>Pranje<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+      <li>Feniranje<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+      <li>Četkanje<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+      <li>Šišanje<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+      <li>Sečenje noktiju<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+      <li>Svilajnac<svg style="color:#c29a6e"><use href="#i-sc"/></svg></li>
+    </ul>
+  </div>
+</div>
+
+<section class="sec" id="znakovi">
   <div class="wrap">
-    <div class="section-head reveal pre">
-      <span class="eyebrow">Kontakt i lokacija</span>
-      <h2>Gde nas nalaziš</h2>
-      <p>Pozovi, pošalji poruku ili popuni formu, javljamo se da dogovorimo termin koji ti odgovara.</p>
+    <div class="head rv">
+      <span class="eyebrow">Zvuči poznato?</span>
+      <h2>Kad je vreme <em>za salon</em></h2>
+      <p class="lead"><span class="s">Ovo su znaci da tvom psu treba nega.</span><span class="s">Za svaki imamo uslugu.</span></p>
+    </div>
+    <div class="signs">
+      <article class="sign rv">
+        <span class="num">01</span>
+        <p class="q">Dlaka mu se čvoruga</p>
+        <p><span class="s">Četka više ne prolazi.</span><span class="s">Raščešljamo i ošišamo.</span></p>
+        <a href="#kontakt" class="link" data-usluga="Kompletna usluga">Kompletna usluga<svg width="12" height="12"><use href="#i-arr"/></svg></a>
+      </article>
+      <article class="sign rv">
+        <span class="num">02</span>
+        <p class="q">Kupanje kod kuće je haos</p>
+        <p><span class="s">Mokro kupatilo i stres.</span><span class="s">Kod nas pranje i sušenje.</span></p>
+        <a href="#kontakt" class="link" data-usluga="Kupanje i sušenje">Kupanje i sušenje<svg width="12" height="12"><use href="#i-arr"/></svg></a>
+      </article>
+      <article class="sign rv">
+        <span class="num">03</span>
+        <p class="q">Nokti kuckaju po pločicama</p>
+        <p><span class="s">Predugi nokti smetaju.</span><span class="s">Sečemo ih sigurno.</span></p>
+        <a href="#kontakt" class="link" data-usluga="Sečenje noktiju">Sečenje noktiju<svg width="12" height="12"><use href="#i-arr"/></svg></a>
+      </article>
+      <article class="sign rv">
+        <span class="num">04</span>
+        <p class="q">Leto je, treba mu lakše</p>
+        <p><span class="s">Vrućina, a dlaka gusta.</span><span class="s">Ošišamo ga kraće.</span></p>
+        <a href="#kontakt" class="link" data-usluga="Kompletna usluga">Šišanje<svg width="12" height="12"><use href="#i-arr"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec services" id="usluge">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow">Naše usluge</span>
+      <h2>Sve što tvom psu <em>treba</em></h2>
+      <p class="lead"><span class="s">Tri usluge, svaka za drugu potrebu.</span><span class="s">Zajedno pokrivaju kompletnu negu.</span></p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc rv">
+        <div class="ph"><img src="assets/sisanje-pomeranac.webp" alt="Šišanje pomeranca makazama na stolu za grooming" loading="lazy" width="1400" height="933" style="object-position:62% 50%"><span class="n">01</span></div>
+        <h3>Kompletna usluga</h3>
+        <p><span class="s">Pranje, feniranje, četkanje i šišanje.</span><span class="s">Pas izlazi potpuno sređen.</span></p>
+        <ul class="tags"><li>Pranje</li><li>Feniranje</li><li>Četkanje</li><li>Šišanje</li></ul>
+        <a href="#kontakt" class="link" data-usluga="Kompletna usluga">Zakaži kompletnu uslugu<svg width="12" height="12"><use href="#i-arr"/></svg></a>
+      </article>
+      <article class="svc rv">
+        <div class="ph"><img src="assets/kupanje-snaucer.webp" alt="Kupanje šnaucera, groomerka ga pere šamponom" loading="lazy" width="1400" height="797" style="object-position:68% 50%"><span class="n">02</span></div>
+        <h3>Kupanje i sušenje</h3>
+        <p><span class="s">Pranje i sušenje fenom.</span><span class="s">Uz dodatnu brigu za krzno.</span></p>
+        <ul class="tags"><li>Pranje</li><li>Sušenje</li><li>Nega krzna</li></ul>
+        <a href="#kontakt" class="link" data-usluga="Kupanje i sušenje">Zakaži kupanje<svg width="12" height="12"><use href="#i-arr"/></svg></a>
+      </article>
+      <article class="svc rv">
+        <div class="ph"><img src="assets/nokti-buldog.webp" alt="Sečenje noktiju engleskom buldogu" loading="lazy" width="1400" height="881" style="object-position:58% 50%"><span class="n">03</span></div>
+        <h3>Sečenje noktiju</h3>
+        <p><span class="s">Profesionalno i sigurno.</span><span class="s">Bez stresa za šape.</span></p>
+        <ul class="tags"><li>Profesionalno</li><li>Sigurno</li></ul>
+        <a href="#kontakt" class="link" data-usluga="Sečenje noktiju">Zakaži sečenje noktiju<svg width="12" height="12"><use href="#i-arr"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="termin">
+  <div class="wrap proc">
+    <div class="proc-side">
+      <div class="head rv">
+        <span class="eyebrow">Kako ide termin</span>
+        <h2>Od poziva do <em>mirisnog</em> psa</h2>
+        <p class="lead"><span class="s">Kompletna usluga ide ovim redom.</span><span class="s">Makaze prate gde si stigao.</span></p>
+      </div>
+      <div class="stack" id="stack">
+        <span class="lbl" id="stackLbl">01 · Poziv</span>
+        <img src="assets/verica.webp" alt="" class="on" style="object-position:50% 30%">
+        <img src="assets/kupanje-snaucer.webp" alt="" loading="lazy">
+        <img src="assets/pribor.webp" alt="" loading="lazy">
+        <img src="assets/sisanje-pomeranac.webp" alt="" loading="lazy">
+      </div>
+    </div>
+    <div class="steps" id="steps">
+      <div class="rail" aria-hidden="true">
+        <div class="rail-cut"></div>
+        <svg class="rail-sc" viewBox="-40 -40 80 80">
+          <g transform="scale(.62)">
+            <g class="b2"><g transform="scale(1,-1)">
+              <path d="M-2,-1 C14,-6 40,-7 68,-1 C40,1 14,2 -2,3 Z" fill="#e6e8ea" stroke="#3a2214" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M-2,2 L-16,11" stroke="#3a2214" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="-26" cy="17" r="10" fill="#fbf6ef" stroke="#c29a6e" stroke-width="5"/>
+            </g></g>
+            <g class="b1">
+              <path d="M-2,-1 C14,-6 40,-7 68,-1 C40,1 14,2 -2,3 Z" fill="#f4f5f6" stroke="#3a2214" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M-2,2 L-16,11" stroke="#3a2214" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="-26" cy="17" r="10" fill="#fbf6ef" stroke="#c29a6e" stroke-width="5"/>
+            </g>
+            <circle r="3" fill="#3a2214"/>
+          </g>
+        </svg>
+      </div>
+      <ol>
+      <li class="step on" data-lbl="01 · Poziv">
+        <span class="k">KORAK 01</span>
+        <h3>Pozoveš nas</h3>
+        <p><span class="s">Javiš se na 062 160 26 36.</span><span class="s">Dogovorimo dan i uslugu.</span></p>
+        <img class="step-img" src="assets/verica.webp" alt="" loading="lazy" style="object-position:50% 30%">
+      </li>
+      <li class="step" data-lbl="02 · Pranje">
+        <span class="k">KORAK 02</span>
+        <h3>Pranje</h3>
+        <p><span class="s">Kupamo psa i peremo krzno.</span><span class="s">Uz dodatnu brigu za dlaku.</span></p>
+        <img class="step-img" src="assets/kupanje-snaucer.webp" alt="" loading="lazy">
+      </li>
+      <li class="step" data-lbl="03 · Feniranje">
+        <span class="k">KORAK 03</span>
+        <h3>Feniranje i četkanje</h3>
+        <p><span class="s">Sušimo dlaku fenom.</span><span class="s">Pa je raščešljamo do kraja.</span></p>
+        <img class="step-img" src="assets/pribor.webp" alt="" loading="lazy">
+      </li>
+      <li class="step" data-lbl="04 · Šišanje">
+        <span class="k">KORAK 04</span>
+        <h3>Šišanje i nokti</h3>
+        <p><span class="s">Šišamo po dogovoru s tobom.</span><span class="s">Nokte sečemo sigurno.</span></p>
+        <img class="step-img" src="assets/sisanje-pomeranac.webp" alt="" loading="lazy">
+      </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec tools on-dark" id="pribor">
+  <div class="wrap tools-grid">
+    <div>
+      <div class="head rv" style="margin-bottom:0">
+        <span class="eyebrow">Naš pribor</span>
+        <h2>Pravi alat za <em>svaku</em> dlaku</h2>
+        <p class="lead"><span class="s">Sve za negu dlake je kod nas.</span><span class="s">Dodirni tačku da vidiš čemu služi.</span></p>
+      </div>
+      <ul class="tool-list rv" id="toolList">
+        <li data-i="0"><span>Makaze za proređivanje</span><span>01</span></li>
+        <li data-i="1"><span>Četka sa iglicama</span><span>02</span></li>
+        <li data-i="2"><span>Mašinica za šišanje</span><span>03</span></li>
+        <li data-i="3"><span>Metalni češalj</span><span>04</span></li>
+        <li data-i="4"><span>Četka od prirodne dlake</span><span>05</span></li>
+        <li data-i="5"><span>Raščešljavač</span><span>06</span></li>
+      </ul>
+    </div>
+    <div class="board rv">
+      <img src="assets/pribor.webp" alt="Pribor za grooming na gumenoj podlozi: makaze, češljevi, četke i mašinica" loading="lazy" width="1800" height="1343">
+      <button class="hs l" style="--x:70.6%;--y:41%" data-i="0" aria-label="Makaze za proređivanje"><span class="tip"><b>Makaze za proređivanje</b><span>Proređuju gustu dlaku da prelaz izgleda prirodno.</span></span></button>
+      <button class="hs l" style="--x:60%;--y:24%" data-i="1" aria-label="Četka sa iglicama"><span class="tip"><b>Četka sa iglicama</b><span>Skida mrtvu dlaku i otpetljava sitne čvorove.</span></span></button>
+      <button class="hs" style="--x:34%;--y:72%" data-i="2" aria-label="Mašinica za šišanje"><span class="tip"><b>Mašinica za šišanje</b><span>Za ravnomerno kraće šišanje po celom telu.</span></span></button>
+      <button class="hs l" style="--x:83.4%;--y:44%" data-i="3" aria-label="Metalni češalj"><span class="tip"><b>Metalni češalj</b><span>Proverava da li je dlaka raščešljana do kože.</span></span></button>
+      <button class="hs" style="--x:19%;--y:60%" data-i="4" aria-label="Četka od prirodne dlake"><span class="tip"><b>Četka od prirodne dlake</b><span>Za završno četkanje posle feniranja.</span></span></button>
+      <button class="hs" style="--x:56.8%;--y:46%" data-i="5" aria-label="Raščešljavač"><span class="tip"><b>Raščešljavač</b><span>Razdvaja zamršene delove dlake.</span></span></button>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="o-nama">
+  <div class="wrap about">
+    <div class="about-ph rv">
+      <div class="frame rv-img"><img src="assets/verica.webp" alt="Verica sa svojim psom" loading="lazy" width="720" height="881"></div>
+      <img class="stamp" src="assets/logo.png" alt="" width="128" height="128">
+      <div class="cap"><b>Verica</b>Lucky Dog Grooming by Verica</div>
+    </div>
+    <div class="about-txt rv">
+      <span class="eyebrow">O salonu</span>
+      <h2>Dobro došli kod <em>Lucky Dog</em></h2>
+      <p><span class="s">Mi smo iskusan tim iz Svilajnca.</span><span class="s">Brinemo o nezi tvog psa od pranja do šišanja.</span></p>
+      <p class="pull">Cilj nam je da tvoj pas bude srećan i zdrav.</p>
+      <p><span class="s">Radujemo se da upoznamo tebe i tvog psa.</span><span class="s">Svratiš u Svetog Save 46 ili nas pozoveš.</span></p>
+      <div class="facts">
+        <div><b>3 usluge</b><span>Za kompletnu negu</span></div>
+        <div><b>6 dana</b><span>Od ponedeljka do subote</span></div>
+        <div><b>9-17h</b><span>Radno vreme</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec visit" id="radno-vreme">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Radno vreme i lokacija</span>
+      <h2>Kada i gde <em>nas nalaziš</em></h2>
+    </div>
+    <div class="visit-grid">
+      <div class="card rv">
+        <div class="status"><i class="dot" id="statusDot2"></i><span id="statusTxt2">Pon-Sub od 9 do 17h</span></div>
+        <ul class="hours" id="hours">
+          <li data-d="1"><span>Ponedeljak</span><span>9 - 17h</span></li>
+          <li data-d="2"><span>Utorak</span><span>9 - 17h</span></li>
+          <li data-d="3"><span>Sreda</span><span>9 - 17h</span></li>
+          <li data-d="4"><span>Četvrtak</span><span>9 - 17h</span></li>
+          <li data-d="5"><span>Petak</span><span>9 - 17h</span></li>
+          <li data-d="6"><span>Subota</span><span>9 - 17h</span></li>
+          <li data-d="0"><span>Nedelja</span><span>Zatvoreno</span></li>
+        </ul>
+      </div>
+      <div class="card loc rv">
+        <span class="eyebrow">Salon</span>
+        <p class="addr">Svetog Save 46</p>
+        <p class="city">Svilajnac, Srbija</p>
+        <div class="loc-rows">
+          <a href="tel:+381621602636"><svg><use href="#i-phone"/></svg>062 160 26 36</a>
+          <a href="mailto:info@luckydog-grooming.rs"><svg><use href="#i-mail"/></svg>info@luckydog-grooming.rs</a>
+          <div><svg><use href="#i-ig"/></svg>@lucky.dog.svilajnac.kragujevac na Instagramu</div>
+        </div>
+        <div class="btns">
+          <a href="tel:+381621602636" class="btn btn-primary">Pozovi salon<span class="arr"><svg><use href="#i-arr"/></svg></span></a>
+          <button type="button" class="btn btn-secondary" id="copyAddr">Kopiraj adresu</button>
+          <span class="copied" id="copied" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="pitanja">
+  <div class="wrap faq">
+    <div class="head rv">
+      <span class="eyebrow">Pitanja</span>
+      <h2>Pre <em>prvog</em> termina</h2>
+      <p class="lead"><span class="s">Ono što nas vlasnici najčešće pitaju.</span><span class="s">Za sve ostalo, pozovi salon.</span></p>
+    </div>
+    <div class="rv">
+      <details open>
+        <summary>Kako da zakažem termin?<i></i></summary>
+        <p><span class="s">Pozovi 062 160 26 36 ili piši kroz formu.</span><span class="s">Dogovorimo dan i uslugu.</span></p>
+      </details>
+      <details>
+        <summary>Šta ulazi u kompletnu uslugu?<i></i></summary>
+        <p><span class="s">Pranje, feniranje, četkanje i šišanje.</span><span class="s">Sečenje noktiju možeš da zakažeš i posebno.</span></p>
+      </details>
+      <details>
+        <summary>Koliko košta grooming?<i></i></summary>
+        <p><span class="s">Cena zavisi od veličine psa, dlake i usluge.</span><span class="s">Pozovi pa ti kažemo tačan iznos.</span></p>
+      </details>
+      <details>
+        <summary>Kada radite?<i></i></summary>
+        <p><span class="s">Od ponedeljka do subote, od 9 do 17h.</span><span class="s">Nedeljom ne radimo.</span></p>
+      </details>
+      <details>
+        <summary>Gde se nalazite?<i></i></summary>
+        <p><span class="s">U Svetog Save 46 u Svilajncu.</span><span class="s">Pozovi pre dolaska da dogovorimo termin.</span></p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="sec contact" id="kontakt">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Pišite nam</span>
+      <h2>Zakaži <em>termin</em></h2>
+      <p class="lead"><span class="s">Imaš pitanje ili želiš termin? Slobodno nam piši.</span><span class="s">Drago nam je da pomognemo.</span></p>
     </div>
     <div class="contact-grid">
-      <div class="contact-info-card reveal pre">
-        <div class="contact-item">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          </div>
-          <div>
-            <h4>Telefon</h4>
-            <p>+381 60 123 4567</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"></path><path d="M22 6l-10 7L2 6"></path></svg>
-          </div>
-          <div>
-            <h4>Email</h4>
-            <p>zakazivanje@luckydog-grooming.rs</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          </div>
-          <div>
-            <h4>Adresa</h4>
-            <p>Bulevar Oslobođenja 45, Beograd</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          </div>
-          <div>
-            <h4>Radno vreme</h4>
-            <p>Ponedeljak - subota, 09:00 - 19:00</p>
-          </div>
-        </div>
-        <div class="map-placeholder" aria-hidden="true">MAPA LOKACIJE SALONA</div>
+      <div class="phone-card on-dark rv">
+        <h3>Najbrže je telefonom</h3>
+        <a class="big" href="tel:+381621602636">062 160 26 36</a>
+        <p class="small">Pon-Sub od 9 do 17h</p>
+        <p class="small">Svetog Save 46, Svilajnac</p>
+        <div class="btns"><a href="tel:+381621602636" class="btn btn-primary">Pozovi salon<span class="arr"><svg><use href="#i-arr"/></svg></span></a></div>
+        <svg class="paw" aria-hidden="true"><use href="#i-paw"/></svg>
       </div>
-      <form class="booking-form reveal pre" action="#" method="post">
-        <h3>Zakaži termin</h3>
-        <p style="color:var(--text-muted);font-size:15px;margin-bottom:22px;">Ostavi podatke i javljamo se u toku dana da potvrdimo termin.</p>
-        <div class="form-row">
-          <input type="text" name="ime" placeholder="Ime i prezime" required>
-          <input type="tel" name="telefon" placeholder="Broj telefona" required>
-        </div>
-        <div class="form-row">
-          <input type="text" name="rasa" placeholder="Rasa psa">
-          <select name="velicina">
-            <option value="">Veličina psa</option>
-            <option value="mali">Mali pas</option>
-            <option value="srednji">Srednji pas</option>
-            <option value="veliki">Veliki pas</option>
+      <form class="card rv" id="form" novalidate>
+        <h3>Pošalji poruku</h3>
+        <p class="sub">Poruka stiže na info@luckydog-grooming.rs.</p>
+        <div class="field"><input id="f-ime" name="ime" placeholder=" " required autocomplete="name"><label for="f-ime">Ime i prezime</label></div>
+        <div class="field"><input id="f-tel" name="telefon" type="tel" placeholder=" " required autocomplete="tel"><label for="f-tel">Broj telefona</label></div>
+        <div class="field"><input id="f-pas" name="pas" placeholder=" "><label for="f-pas">Rasa i ime psa</label></div>
+        <div class="field">
+          <select id="f-usluga" name="usluga">
+            <option>Kompletna usluga</option>
+            <option>Kupanje i sušenje</option>
+            <option>Sečenje noktiju</option>
+            <option>Nisam siguran/na</option>
           </select>
+          <label for="f-usluga">Usluga</label>
         </div>
-        <textarea name="poruka" placeholder="Koju uslugu ti treba i kada ti odgovara termin"></textarea>
-        <button type="submit" class="btn btn-primary">Pošalji zahtev za termin</button>
+        <div class="field full"><textarea id="f-poruka" name="poruka" placeholder=" "></textarea><label for="f-poruka">Kada ti odgovara termin?</label></div>
+        <button type="submit" class="btn btn-primary full">Pošalji poruku salonu<span class="arr"><svg><use href="#i-arr"/></svg></span></button>
+        <p class="form-note" id="formNote" aria-live="polite"></p>
       </form>
     </div>
   </div>
 </section>
 
-<section class="cta-final">
+<section class="sec final on-dark">
+  <div class="bubbles" aria-hidden="true">
+    <i style="--x:8%;--s:32px;--d:0s;--t:9s;--dx:16px"></i>
+    <i style="--x:20%;--s:16px;--d:2s;--t:7s;--dx:-12px"></i>
+    <i style="--x:34%;--s:24px;--d:4.5s;--t:10s;--dx:20px"></i>
+    <i style="--x:66%;--s:20px;--d:1.2s;--t:8s;--dx:-16px"></i>
+    <i style="--x:80%;--s:40px;--d:3.4s;--t:11s;--dx:12px"></i>
+    <i style="--x:92%;--s:16px;--d:5.6s;--t:7.5s;--dx:-8px"></i>
+  </div>
   <div class="wrap">
-    <h2 class="reveal pre">Zakaži termin danas</h2>
-    <p class="reveal pre">Javi nam veličinu psa i uslugu koja ti treba, mi nađemo termin koji ti odgovara.</p>
-    <div class="btn-row reveal pre">
-      <a href="#kontakt" class="btn btn-light">Zakaži termin za svog psa</a>
-      <a href="tel:+381601234567" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4);color:#fff;">Pozovi salon</a>
+    <span class="eyebrow rv">Lucky Dog Grooming</span>
+    <h2 class="rv">Vreme je za <em>kupanje?</em></h2>
+    <p class="lead rv"><span class="s">Pozovi salon i dogovorimo termin za tvog psa.</span></p>
+    <div class="cta-row rv">
+      <a href="tel:+381621602636" class="btn btn-primary">Pozovi 062 160 26 36<span class="arr"><svg><use href="#i-arr"/></svg></span></a>
+      <a href="#kontakt" class="btn btn-secondary">Pošalji poruku</a>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer>
   <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-logo">
-        <img src="assets/logo.png" alt="Lucky Dog Grooming by Verica logo">
-        <span>Lucky Dog Grooming</span>
+    <div class="foot">
+      <div>
+        <a href="#top" class="brand"><img src="assets/logo.png" alt="" width="56" height="56"><span><b>Lucky Dog</b><small>Grooming by Verica</small></span></a>
+        <p>Salon za negu pasa u Svilajncu. Šišanje, kupanje, feniranje i nokti.</p>
       </div>
-      <div class="footer-links">
-        <a href="#usluge">Usluge</a>
-        <a href="#cenovnik">Cenovnik</a>
-        <a href="#o-nama">O nama</a>
-        <a href="#kontakt">Kontakt</a>
+      <div>
+        <h4>Stranica</h4>
+        <ul><li><a href="#usluge">Usluge</a></li><li><a href="#termin">Kako ide termin</a></li><li><a href="#o-nama">O nama</a></li><li><a href="#kontakt">Kontakt</a></li></ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul><li><a href="tel:+381621602636">062 160 26 36</a></li><li><a href="mailto:info@luckydog-grooming.rs">info@luckydog-grooming.rs</a></li><li>Svetog Save 46, Svilajnac</li></ul>
+      </div>
+      <div>
+        <h4>Radno vreme</h4>
+        <ul><li>Pon-Pet: 9-17h</li><li>Subota: 9-17h</li><li>Nedelja: zatvoreno</li><li>@lucky.dog.svilajnac.kragujevac</li></ul>
       </div>
     </div>
-    <p class="footer-bottom">© 2026 Lucky Dog Grooming by Verica. Sva prava zadržana.</p>
+    <div class="copy"><span>© 2026 Lucky Dog Grooming by Verica. Sva prava zadržana.</span><span>#luckydoggrooming</span></div>
   </div>
 </footer>
 
 <script>
-  // Sticky header blur on scroll
-  var header = document.getElementById('siteHeader');
-  function onScroll(){
-    if(window.scrollY > 10){
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+document.documentElement.classList.add('js');
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Header senka na skrol
+  var hdr = document.getElementById('hdr');
+  function onScroll(){ hdr.classList.toggle('scrolled', scrollY > 8); }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // Mobilni meni
+  var burger = document.getElementById('burger'), mnav = document.getElementById('mnav');
+  function setMenu(open){
+    mnav.classList.toggle('open', open); burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open); document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function(){ setMenu(!mnav.classList.contains('open')); });
+  mnav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+
+  // Reveal: posmatramo element (clip-path slike posmatramo preko roditelja)
+  var rv = document.querySelectorAll('.rv, .rv-img');
+  if ('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        el.classList.add('in');
+        el.querySelectorAll(':scope > .rv-img').forEach(function(c){ c.classList.add('in'); });
+        io.unobserve(el);
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){
+      var sib = el.parentNode.querySelectorAll(':scope > .rv');
+      var i = Array.prototype.indexOf.call(sib, el);
+      if (i > 0) el.style.transitionDelay = Math.min(i, 4) * 0.08 + 's';
+      io.observe(el);
+    });
+  } else {
+    rv.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // Status po radnom vremenu (Beograd)
+  function bgNow(){
+    var p = new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Belgrade', weekday:'short', hour:'numeric', minute:'numeric', hour12:false}).formatToParts(new Date());
+    var o = {}; p.forEach(function(x){ o[x.type] = x.value; });
+    var days = {Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6};
+    return {d:days[o.weekday], h:(+o.hour % 24) + (+o.minute)/60};
+  }
+  var n = bgNow(), open = n.d >= 1 && n.d <= 6 && n.h >= 9 && n.h < 17, main, sub;
+  if (open){ main = 'Otvoreno sada'; sub = 'Danas radimo do 17h'; }
+  else if (n.d >= 1 && n.d <= 6 && n.h < 9){ main = 'Zatvoreno'; sub = 'Otvaramo danas u 9h'; }
+  else if (n.d === 0 || n.d === 6){ main = 'Zatvoreno'; sub = 'Otvaramo u ponedeljak u 9h'; }
+  else { main = 'Zatvoreno'; sub = 'Otvaramo sutra u 9h'; }
+  document.getElementById('statusTxt').textContent = main;
+  document.getElementById('statusSub').textContent = sub;
+  document.getElementById('statusTxt2').textContent = main + ' · ' + sub.charAt(0).toLowerCase() + sub.slice(1);
+  ['statusDot','statusDot2'].forEach(function(id){ document.getElementById(id).classList.toggle('closed', !open); });
+  var today = document.querySelector('#hours li[data-d="' + n.d + '"]');
+  if (today) today.classList.add('today');
+
+  // Proces: makaze seku liniju sa skrolom, aktivni korak menja fotografiju
+  var steps = document.getElementById('steps'), rail = steps.querySelector('.rail');
+  var items = steps.querySelectorAll('.step'), imgs = document.querySelectorAll('#stack img'), lbl = document.getElementById('stackLbl');
+  var active = 0, ticking = false;
+  function proc(){
+    ticking = false;
+    var r = rail.getBoundingClientRect(), mid = innerHeight * 0.55;
+    var p = Math.max(0, Math.min(1, (mid - r.top) / r.height));
+    rail.style.setProperty('--p', p.toFixed(4));
+    rail.style.setProperty('--snip', (10 + 9 * Math.sin(scrollY / 18)).toFixed(2));
+    var a = 0;
+    items.forEach(function(it, i){ if (it.getBoundingClientRect().top < mid) a = i; });
+    if (a !== active){
+      active = a;
+      items.forEach(function(it, i){ it.classList.toggle('on', i <= a); });
+      imgs.forEach(function(im, i){ im.classList.toggle('on', i === a); });
+      lbl.textContent = items[a].dataset.lbl;
     }
   }
-  window.addEventListener('scroll', onScroll);
-  onScroll();
+  addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(proc); } }, {passive:true});
+  addEventListener('resize', proc); proc();
 
-  // Hamburger menu
-  var hamburgerBtn = document.getElementById('hamburgerBtn');
-  var mobileMenu = document.getElementById('mobileMenu');
-  hamburgerBtn.addEventListener('click', function(){
-    var isOpen = mobileMenu.classList.toggle('open');
-    hamburgerBtn.classList.toggle('open', isOpen);
-    hamburgerBtn.setAttribute('aria-expanded', isOpen);
-  });
-  document.querySelectorAll('.mobile-menu a').forEach(function(link){
-    link.addEventListener('click', function(){
-      mobileMenu.classList.remove('open');
-      hamburgerBtn.classList.remove('open');
-      hamburgerBtn.setAttribute('aria-expanded', false);
-    });
-  });
-
-  // Scroll reveal
-  if('IntersectionObserver' in window){
-    var revealEls = document.querySelectorAll('.reveal');
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(function(el){ observer.observe(el); });
+  // Pribor: tačke + lista
+  var hs = document.querySelectorAll('.hs'), tl = document.querySelectorAll('#toolList li');
+  function setTool(i){
+    hs.forEach(function(h){ h.classList.toggle('on', +h.dataset.i === i); });
+    tl.forEach(function(l){ l.classList.toggle('on', +l.dataset.i === i); });
   }
-</script>
+  hs.forEach(function(h){
+    h.addEventListener('click', function(){ setTool(h.classList.contains('on') ? -1 : +h.dataset.i); });
+    h.addEventListener('mouseenter', function(){ setTool(+h.dataset.i); });
+  });
+  tl.forEach(function(l){ l.addEventListener('mouseenter', function(){ setTool(+l.dataset.i); }); l.addEventListener('click', function(){ setTool(+l.dataset.i); }); });
+  document.querySelector('.board').addEventListener('mouseleave', function(){ setTool(-1); });
 
+  // Kopiraj adresu
+  var copied = document.getElementById('copied');
+  document.getElementById('copyAddr').addEventListener('click', function(){
+    var t = 'Svetog Save 46, Svilajnac';
+    function done(ok){ copied.textContent = ok ? 'Adresa je kopirana' : t; copied.classList.add('on'); setTimeout(function(){ copied.classList.remove('on'); }, 2400); }
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(function(){ done(true); }, function(){ done(false); });
+    else done(false);
+  });
+
+  // Linkovi usluga unapred biraju uslugu u formi
+  var sel = document.getElementById('f-usluga');
+  document.querySelectorAll('[data-usluga]').forEach(function(a){
+    a.addEventListener('click', function(){ sel.value = a.dataset.usluga; });
+  });
+
+  // Forma: otvara email sa popunjenom porukom
+  var form = document.getElementById('form'), note = document.getElementById('formNote');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var f = form.elements;
+    if (!f.ime.value.trim() || !f.telefon.value.trim()){
+      note.textContent = 'Upiši ime i broj telefona da možemo da te pozovemo.';
+      (f.ime.value.trim() ? f.telefon : f.ime).focus();
+      return;
+    }
+    var body = 'Ime: ' + f.ime.value + '\nTelefon: ' + f.telefon.value + '\nPas: ' + f.pas.value + '\nUsluga: ' + f.usluga.value + '\n\n' + f.poruka.value;
+    location.href = 'mailto:info@luckydog-grooming.rs?subject=' + encodeURIComponent('Termin: ' + f.usluga.value) + '&body=' + encodeURIComponent(body);
+    note.textContent = 'Otvorili smo tvoj email sa porukom. Ako se nije otvorio, pozovi 062 160 26 36.';
+  });
+})();
+</script>
 </body>
 </html>
